@@ -1,3 +1,13 @@
+"""
+used to parse json for country and course work crawled from the website
+parse into dicts and pickle
+To do:
+add llm parsing 
+
+
+"""
+
+
 import os
 import json, pickle
 
