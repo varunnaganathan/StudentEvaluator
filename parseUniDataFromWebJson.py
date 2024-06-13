@@ -54,9 +54,9 @@ if __name__ == "__main__":
     filepathCountryReq = "./universityData/continent_countries.json"
     countryReq, countryReqLLM = getCountryRequirement(filepathCountryReq)
 
-    print(len(courseReq))
+    print(courseReq)
     print("\n\n\n")
-    print(len(countryReq))
+    print(countryReq)
 
-    pickle.dump(courseReq,open("./universityData/northUmbria/courseRequirements.pickle",'wb'))
-    pickle.dump(countryReq,open("./universityData/northUmbria/countryRequirements.pickle",'wb'))
+    #pickle.dump(courseReq,open("./universityData/northUmbria/courseRequirements.pickle",'wb'))
+    #pickle.dump(countryReq,open("./universityData/northUmbria/countryRequirements.pickle",'wb'))

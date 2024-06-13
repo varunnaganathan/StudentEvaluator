@@ -15,6 +15,15 @@ class Prompts():
             2. Point of ambiguity: Ambiguous points where either data is absent or the criteria isnt clear. Need human intervention.
             3. Points of communication: Need to get back to the student since data needed isnt provided. here the data isnt ambiguous but isnt present at all.
             """,
+            "Course_university_requirement":
+            """
+            below is json mentioning a universitys requirements per course. summarize it in the form of a course -> requirements form 
+
+            """,
+            "Country_university_requirement":
+            """
+            
+            """
 
         }
 
