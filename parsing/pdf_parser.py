@@ -208,6 +208,7 @@ def text_extraction(element):
 
 
 def parse_pdf(pdf_path):
+    print(f"Parsing {pdf_path}")
     pdfFileObj = open(pdf_path, 'rb')
     # create a PDF reader object
     pdfReaded = PyPDF2.PdfReader(pdfFileObj)
@@ -328,14 +329,15 @@ def parse_pdf(pdf_path):
     # Display the content of the page
     result = ''.join(text_per_page['Page_0'][4])
     print(result)
+    return result
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # start extracting
-    pytesseract.pytesseract.tesseract_cmd = r'/opt/homebrew/Cellar/tesseract/5.4.0/bin/tesseract'
-    pdf_path = "./sample/Academics.pdf"
+    # pytesseract.pytesseract.tesseract_cmd = r'/opt/homebrew/Cellar/tesseract/5.4.0/bin/tesseract'
+    # pdf_path = "./sample/Academics.pdf"
 
-    parse_pdf(pdf_path)
+    # parse_pdf(pdf_path)
 
     # check logic here for content type per page
     # create a PDF file object

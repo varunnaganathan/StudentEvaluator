@@ -1,0 +1,25 @@
+STUDENT_FIRST_NAME = 'first_name'
+STUDENT_LAST_NAME = 'last_name'
+STUDENT_EMAIL = 'email'
+STUDENT_COUNTRY = 'country'
+STUDENT_TABLE = 'Student'
+
+DOC_TABLE = 'Doc'
+DOC_CONTENT = 'doc_content'
+DOC_ID = 'doc_id'
+DOC_STUDENT_ID = 'student_id'
+
+UNIVERSITY_TABLE = 'University'
+UNIVERSITY_NAME = 'name'
+UNIVERSITY_WEBSITE = 'website'
+
+UNIVERSITY_COURSE_TABLE = 'UniversityCourse'
+UNIVERSITY_COURSE_NAME = 'course_name'
+UNIVERSITY_COURSE_ENTRY_REQ = 'entry_requirements'
+UNIVERSITY_COURSE_UNI_ID = 'university_id'
+
+UNIVERSITY_COUNTRY_TABLE = 'UniversityCountry'
+UNIVERSITY_COUNTRY_NAME = 'country_name'
+UNIVERSITY_COUNTRY_ENTRY_REQ = 'entry_requirements'
+UNIVERSITY_COUNTRY_UNI_ID = 'university_id'
+UNIVERSITY_COUNTRY_COUNTRY_NAME = 'country_name'

@@ -36,7 +36,6 @@ student data
 """
 
 
-
 class StudentData():
 
     docsData = {}
@@ -68,21 +67,14 @@ class StudentData():
 
     # when new doc is added later for a student
     async def updateDocsData(self, dir_path, file_path):
-        if os.path.isfile(os.path.join(dir_path, path)) and str(os.path.join(dir_path, path)).endswith(".pdf"):
-                fname = os.path.join(dir_path, path)
+        if os.path.isfile(os.path.join(dir_path, file_path)) and str(os.path.join(dir_path, file_path)).endswith(".pdf"):
+                fname = os.path.join(dir_path, file_path)
                 self.docsData[fname] = self.get_Docdata(fname)
                 self.docsDataLLM[fname] = self.getLLMSummaryDocData(fname, self.docsData[fname])
 
+
     async def deleteDocsData(self, dir_path, file_path):
-        if os.path.isfile(os.path.join(dir_path, path)) and str(os.path.join(dir_path, path)).endswith(".pdf"):
-                fname = os.path.join(dir_path, path)
+        if os.path.isfile(os.path.join(dir_path, file_path)) and str(os.path.join(dir_path, file_path)).endswith(".pdf"):
+                fname = os.path.join(dir_path, file_path)
                 self.docsData[fname] = []
                 self.docsDataLLM[fname] = []
-
-    
-
-
-
-    
-
-                
