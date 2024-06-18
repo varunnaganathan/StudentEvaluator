@@ -37,7 +37,7 @@ class studentDoc():
 
     
 
-    def analyze_image_from_uri(
+    def analyze_image_from_uri(self,
         image_uri: str,
         feature_types: Sequence,
     ) -> vision.AnnotateImageResponse:
@@ -53,7 +53,7 @@ class studentDoc():
         return response,response.full_text_annotation.text
 
 
-    def analyze_image_from_file_content(
+    def analyze_image_from_file_content(self,
         content: bytearray,
         feature_types: Sequence,
     ) -> vision.AnnotateImageResponse:
@@ -69,7 +69,7 @@ class studentDoc():
         return response,response.full_text_annotation.text
 
 
-    def analyze_image_from_file(
+    def analyze_image_from_file(self,
         filename: str,
         feature_types: Sequence,
     ) -> vision.AnnotateImageResponse:
@@ -89,7 +89,7 @@ class studentDoc():
 
         return response,response.full_text_annotation.text
 
-    def print_labels(response: vision.AnnotateImageResponse):
+    def print_labels(self,response: vision.AnnotateImageResponse):
         print("=" * 80)
         for label in response.label_annotations:
             print(
@@ -98,7 +98,7 @@ class studentDoc():
                 sep=" | ",
             )
 
-    def print_text(response: vision.AnnotateImageResponse):
+    def print_text(self,response: vision.AnnotateImageResponse):
         print("=" * 80)
         s= ""
         for annotation in response.text_annotations:
@@ -117,7 +117,7 @@ class studentDoc():
     """
     # Extracting tables from the page
 
-    def extract_table(pdf_path, page_num, table_num):
+    def extract_table(self,pdf_path, page_num, table_num):
         # Open the pdf file
         pdf = pdfplumber.open(pdf_path)
         # Find the examined page
@@ -127,7 +127,7 @@ class studentDoc():
         return table
 
     # Convert table into the appropriate format
-    def table_converter(table):
+    def table_converter(self,table):
         table_string = ''
         # Iterate through each row of the table
         for row_num in range(len(table)):
@@ -150,7 +150,7 @@ class studentDoc():
     2. store the images separately into a new pdf
     3. use tesseract (google vision in our case) to get contents out
     """
-    def crop_image(element, pageObj):
+    def crop_image(self,element, pageObj):
         # Get the coordinates to crop the image from the PDF
         [image_left, image_top, image_right, image_bottom] = [element.x0,element.y0,element.x1,element.y1] 
         # Crop the page using coordinates (left, bottom, right, top)
@@ -164,14 +164,14 @@ class studentDoc():
             cropped_pdf_writer.write(cropped_pdf_file)
 
     # Create a function to convert the PDF to images
-    def convert_to_images(input_file,):
+    def convert_to_images(self,input_file,):
         images = convert_from_path(input_file)
         image = images[0]
         output_file = "PDF_image.png"
         image.save(output_file, "PNG")
 
     # Create a function to read text from images
-    def image_to_text(image_path):
+    def image_to_text(self,image_path):
         # Read the image
         img = Image.open(image_path)
         # Extract the text from the image
@@ -183,7 +183,7 @@ class studentDoc():
     # extract text from a text container
     # we first extract text and then iterate over to get character font and size 
 
-    def text_extraction(element):
+    def text_extraction(self,element):
         # Extracting the text from the in-line text element
         line_text = element.get_text()
         
@@ -282,8 +282,8 @@ class studentDoc():
                     #replace with vision api call
                     features = [vision.Feature.Type.TEXT_DETECTION]
                     resp, image_text = self.analyze_image_from_file('PDF_image.png', feature_types=features)
-                    self.print_text(response=resp)
-                    print("\n\n\n\n\n")
+                    #self.print_text(response=resp)
+                    #print("\n\n\n\n\n")
 
                     text_from_images.append(image_text)
                     page_content.append(image_text)
@@ -331,10 +331,21 @@ class studentDoc():
         pdfFileObj.close()
 
         # Deleting the additional files created
-        os.remove('cropped_image.pdf')
-        os.remove('PDF_image.png')
+        #os.remove('cropped_image.pdf')
+        #os.remove('PDF_image.png')
 
+        print(self.docPath)
+        print("\n")
+        #print(text_per_page)
+        #print("\n\n\n")
+        result = ""
+        if 'Page_0' in text_per_page:
+            for k in text_per_page:
         # Display the content of the page
-        result = ''.join(text_per_page['Page_0'][4])
-        print(result)
+                res = ''.join(text_per_page[k][4])
+                #print(result)
+                result+=res
+                result+="\n"
+        else:
+            result = ""
         return result

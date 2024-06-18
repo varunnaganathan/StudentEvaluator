@@ -36,19 +36,20 @@ student data
 """
 
 
+
 class StudentData():
 
     docsData = {}
     docsDataLLM = {}
-    def __init__(self, id, docs, email):
+    def __init__(self, id, docs_dir, email):
         self.id = id
-        self.docs = docs
+        self.docs_dir = docs_dir
         self.email = email
         self.docsData = {}
 
     def get_Docdata(self, filepath):
         # use doc class and get text for it
-        doc = studentDoc(filepath)
+        doc = studentDoc.studentDoc(filepath)
         return doc.getDocData()
 
     def getLLMSummaryDocData(self, docpath, data):
@@ -57,13 +58,14 @@ class StudentData():
 
     # get all docs data in given student dir
     # also get llm summarized version of them
-    def get_Docsdata(self, dir_path):
-        for path in os.listdir(dir_path):
+    def get_Docsdata(self):
+        for path in os.listdir(self.docs_dir):
             # check if current path is a file
-            if os.path.isfile(os.path.join(dir_path, path)) and str(os.path.join(dir_path, path)).endswith(".pdf"):
-                fname = os.path.join(dir_path, path)
+            if os.path.isfile(os.path.join(self.docs_dir, path)) and str(os.path.join(self.docs_dir, path)).endswith(".pdf"):
+                fname = os.path.join(self.docs_dir, path)
                 self.docsData[fname] = self.get_Docdata(fname)
                 self.docsDataLLM[fname] = self.getLLMSummaryDocData(fname, self.docsData[fname])
+        
 
     # when new doc is added later for a student
     async def updateDocsData(self, dir_path, file_path):
@@ -72,9 +74,44 @@ class StudentData():
                 self.docsData[fname] = self.get_Docdata(fname)
                 self.docsDataLLM[fname] = self.getLLMSummaryDocData(fname, self.docsData[fname])
 
-
     async def deleteDocsData(self, dir_path, file_path):
         if os.path.isfile(os.path.join(dir_path, file_path)) and str(os.path.join(dir_path, file_path)).endswith(".pdf"):
                 fname = os.path.join(dir_path, file_path)
                 self.docsData[fname] = []
                 self.docsDataLLM[fname] = []
+
+    
+    def writeDocsData(self):
+         outdir = self.docs_dir + "outputDocs/"
+         for k in self.docsData:
+              outfile = outdir + ((k.split("/")[-1]).rstrip(k.split(".")[-1])) + "txt"
+              print(outfile)
+              os.makedirs(os.path.dirname(outfile), exist_ok=True)
+              f = open(outfile,'w')
+              f.write("file name = "+k)
+              f.write(self.docsData[k])
+              f.close()
+
+    def writeDocsDataLLM(self):
+         outdir = self.docs_dir + "outputDocsLLM/"
+         for k in self.docsDataLLM:
+              outfile = outdir + ((k.split("/")[-1]).rstrip(k.split(".")[-1])).strip('.') + "_llm.txt"
+              print(outfile)
+              os.makedirs(os.path.dirname(outfile), exist_ok=True)
+              f = open(outfile,'w')
+              f.write("file name = "+k)
+              f.write(self.docsDataLLM[k])\
+              f.close()
+    
+if __name__ == "__main__":
+     docs_dir = "./sample/1234/"
+     d = StudentData(id="1234",docs_dir=docs_dir, email="hello")
+     d.get_Docsdata()
+     print(d.docsData)
+     d.writeDocsData()
+     d.writeDocsDataLLM()
+
+
+    
+
+                
