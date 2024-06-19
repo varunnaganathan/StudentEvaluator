@@ -12,7 +12,7 @@ from pdf2image import convert_from_path
 import pytesseract 
 # To remove the additional created files
 import os
-
+import pdb
 
 # for google vision
 # for vision model
@@ -209,6 +209,8 @@ class studentDoc():
 
 
     def getDocData(self):
+        Image.MAX_IMAGE_PIXELS = 1000000000                                                                                              
+
                 # start extracting
         pytesseract.pytesseract.tesseract_cmd = r'/opt/homebrew/Cellar/tesseract/5.4.0/bin/tesseract'
         pdf_path = self.docPath
@@ -271,7 +273,7 @@ class studentDoc():
                         pass
 
                 # Check the elements for images
-                if isinstance(element, LTFigure):
+                if isinstance(element, LTFigure) or isinstance(element, LTRect):
                     # Crop the image from the PDF
                     self.crop_image(element, pageObj)
                     # Convert the cropped pdf to an image
@@ -290,9 +292,12 @@ class studentDoc():
                     # Add a placeholder in the text and format lists
                     page_text.append('image')
                     line_format.append('image')
-
+                """
                 # Check the elements for tables
                 if isinstance(element, LTRect):
+                    pdb.set_trace()
+                    #lower_side = page.bbox[3] - tables[table_num].bbox[3]
+                    #upper_side = element.y1
                     # If the first rectangular element
                     if first_element == True and (table_num+1) <= len(tables):
                         # Find the bounding box of the table
@@ -320,7 +325,7 @@ class studentDoc():
                         table_extraction_flag = False
                         first_element = True
                         table_num+=1
-
+                """
 
             # Create the key of the dictionary
             dctkey = 'Page_'+str(pagenum)

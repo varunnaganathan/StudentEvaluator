@@ -17,7 +17,7 @@ import pytesseract
 # To remove the additional created files
 import os
 
-
+import utils, llm_filter_info
 # for google vision
 # for vision model
 from google.cloud import vision
@@ -54,7 +54,11 @@ class StudentData():
 
     def getLLMSummaryDocData(self, docpath, data):
         # make openai call here
-        return ""
+        return utils.get_llm_response(
+             user_prompt="",
+             task_prompt="",
+             system_prompt=""
+        )
 
     # get all docs data in given student dir
     # also get llm summarized version of them
@@ -100,12 +104,12 @@ class StudentData():
               os.makedirs(os.path.dirname(outfile), exist_ok=True)
               f = open(outfile,'w')
               f.write("file name = "+k)
-              f.write(self.docsDataLLM[k])\
+              f.write(self.docsDataLLM[k])
               f.close()
     
 if __name__ == "__main__":
-     docs_dir = "./sample/1234/"
-     d = StudentData(id="1234",docs_dir=docs_dir, email="hello")
+     docs_dir = "./sample/10445379/"
+     d = StudentData(id="10445379",docs_dir=docs_dir, email="hello")
      d.get_Docsdata()
      print(d.docsData)
      d.writeDocsData()

@@ -1,0 +1,464 @@
+file name = ./sample/10195309/DEGREE CONSO.pdfUNIVER
+PROGRESS THROUGH KNOWLEDGE
+NAME OF THE CANDIDATE
+COLLEGE OF STUDY
+SURYA M SURESH
+SVS COLLEGE OF ENGINEERING
+ANNA UNIVERSITY, CHENNAI-600 025
+B.E. DEGREE EXAMINATIONS
+CONSOLIDATED STATEMENT OF GRADES
+REGISTER NO.
+Folio No. AUS1043684
+S114397660826H
+REGULATIONS
+722014104038
+GENDER
+FEMALE
+DATE OF BIRTH
+2013
+08-NOV-95
+PROGRAMME & BRANCH
+SEM
+COURSE
+CODE
+B.E. Computer Science and Engineering
+MONTH & YEAR OF LAST APPEARANCE
+April 2018
+MEDIUM OF INSTRUCTION
+English
+COURSE TITLE
+C
+LG
+GP
+MONTH & YEAR SEM
+OF PASSING
+COURSE
+CODE
+COURSE TITLE
+C
+LG GP
+MONTH & YEAR
+OF PASSING
+01
+CY6151
+Engineering Chemistry - I
+3
+D
+6
+NOV 2014
+05
+CS6504
+Computer Graphics
+3
+C
+7
+NOV 2016
+01
+GE6151
+Computer Programming
+3
+B
+8
+NOV 2014
+05
+MA6566
+Discrete Mathematics
+4
+E
+5
+NOV 2016
+01
+GE6152
+Engineering Graphics
+4
+C
+7
+NOV 2014
+05
+CS6511
+Case Tools Laboratory
+2
+A
+9
+NOV 2016
+01
+HS6151
+Technical English-I
+4
+E
+5
+NOV 2014
+05
+CS6512
+01
+MAG151
+01
+PHỐ151
+01
+GE6161
+01
+GE6162
+01
+GE6163
+02
+CS6201
+02
+CS6202
+02
+CY6251
+Mathematics-1
+Engineering Physics - 1
+Computer Practices Laboratory
+Engineering Practices Laboratory.
+Physics and Chemistry Laboratory-1
+Digital Principles and System Design
+Programming and Data Structures I
+Engineering Chemistry - II
+4.
+D
+6
+NOV 2014
+05
+CS6513
+Internet Programming Laboratory
+Computer Graphics Laboratory
+2
+A
+9
+NOV 2016
+2
+A
+9
+NOV 2016
+E
+NOV 2014
+06
+CS6601
+Distributed Systems
+3
+D
+6
+APR 2017
+B
+8
+NOV 2014
+06
+CS6659
+Artificial Intelligence
+B
+APR 2017
+2
+A
+9
+NOV 2014
+06
+CS6660
+Compiler Design
+C
+7
+APR 2017
+B
+8.
+NOV 2014
+06
+IT6502
+Digital Signal Processing
+4
+E
+S
+APR 2017
+B
+8
+APR 2015
+06
+IT6601
+Mobile Computing
+5
+APR 2017
+D
+6
+APR 2015
+06
+CS6001
+C# and .Net Programming
+E
+5
+APR 2017
+C
+7
+APR 2015
+06
+CS6611
+Mobile Application Development Laboratory
+S
+10
+APR 2017
+02
+HS6251
+Technical English - II
+C
+7
+APR 2015
+02
+MA6251
+Mathematics-II
+D
+6
+APR 2015
+02
+PH6251
+Engineering Physics-II
+3
+B
+8
+APR 2015
+02
+CS6211
+Digital Laboratory
+2
+B
+8
+APR 2015
+02
+CS6212
+Programming and Data Structures Laboratory I
+A
+9
+APR 2015
+02
+GE6262
+Physics and Chemistry Laboratory II
+B
+8
+APR 2015
+03
+CS6301
+Programming and Data Structures II
+C
+7
+NOV 2015
+03
+CS6302
+Database Management Systems
+7
+NOV 2015
+03
+CS6303
+03
+CS6304
+03
+GE6351
+Computer Architecture
+Analog and Digital Communication
+Environmental Science and Engineering
+C
+7
+APR 2016
+3
+7
+APR 2016
+9999999988
+06
+CS6612
+Compiler Laboratory
+8
+APR 2017
+06
+GE6674
+Communication and Soft Skills - Laboratory Based
+APR 2017
+07
+CS6701
+Cryptography and Network Security
+C
+7
+NOV 2017
+07
+CS6702
+Graph Theory and Applications
+E
+5
+NOV 2017
+07
+CS6703
+Grid and Cloud Computing
+7
+NOV 2017
+07
+CS6704
+Resource Management Techniques
+E
+5
+NOV 2017
+07
+CS6007
+07
+IT6801
+07
+CS6711
+CS6712
+B
+8
+NOV 2015
+CS6801
+03
+MA6351
+Transforms and Partial Differential Equations
+E
+5
+NOV 2016
+08
+CS6008
+03
+CS6311
+Programming and Data Structure Laboratory II
+A
+9
+NOV 2015
+08
+03
+CS6312
+04
+CS6401
+Database Management Systems Laboratory
+Operating Systems
+S
+10
+NOV 2015
+08
+GE6075
+CS6811
+Project Work
+C
+7
+APR 2016
+04
+CS6402
+Design and Analysis of Algorithms
+C
+7
+APR 2016
+04
+CS6403
+Software Engineering
+3
+B
+8
+APR 2016
+04
+CS6551
+Computer Networks
+3
+E
+5
+APR 2016
+Information Retrieval
+Service Oriented Architecture
+Security Laboratory
+Grid and Cloud Computing Laboratory
+Multi-Core Architectures and Programming
+Human Computer Interaction
+Professional Ethics in Engineering
+***End of Statement ***
+Cumulative Grade Point Average: 7.06
+Classification: FIRST CLASS
+5
+NOV 2017
+E
+5
+NOV 2017
+S
+10
+NOV 2017
+A
+9
+NOV 2017
+(DDCA
+6
+APR 2018
+6
+APR 2018
+7
+APR 2018
+9
+APR 2018
+04
+EC6504
+Microprocessor and Microcontroller
+A
+9
+APR 2016
+04
+MA6453
+Probability and Queuing Theory.
+4
+B
+8
+APR 2016
+04
+CS6411
+Networks Laboratory
+S
+10
+APR 2016
+04
+CS6412
+Microprocessor and Microcontroller Laboratory
+9.
+APR 2016
+04
+CS6413
+Operating Systems Laboratory
+S
+10
+APR 2016
+888
+05
+CS6501
+Internet Programming
+4
+7
+NOV 2016
+05
+CS6502
+Object Oriented Analysis and Design
+3
+7
+NOV 2016
+05
+CS6503
+Theory of Computation
+3
+7
+NOV 2016
+troller of Examination
+Aarsity
+SEM- Semester, C-Credits, LG-Letter Grade, GP-Grade Point
+S
+A
+Range of Marks 91-100 81-90 71-80 61-70 57-60 50-56
+Letter Grade
+<50
+B
+C
+D
+E
+U
+Grade Point
+10
+9
+8
+7
+6
+5
+0
+Chennai-600 025
+Date 25/06/2018
+SIGNATURE OF THE STUDENT
+where
+CGP
+CGPA-
+C is the credits assigned to the course.
+GP is the point corresponding to the grade obtained for each coune
+w-is number of all courses succesfully cleared during all the semesters
+CONTROLLER OF EXAMINATIONS i/e
