@@ -2,16 +2,20 @@ import uuid
 from settings import db_file
 import sqlite3
 import os
+from llama_index.core.schema import Document
 from storage.constants import (
     DOC_CONTENT,
+    DOC_FILE_NAME,
     DOC_ID,
     DOC_STUDENT_ID,
+    DOC_SUMMARY,
     DOC_TABLE,
     STUDENT_FIRST_NAME,
     STUDENT_LAST_NAME,
     STUDENT_EMAIL,
     STUDENT_COUNTRY,
     STUDENT_TABLE,
+    STUDENT_ID,
     UNIVERSITY_COURSE_UNI_ID,
     UNIVERSITY_NAME,
     UNIVERSITY_TABLE,
@@ -58,9 +62,10 @@ class DatabaseManager:
         # Create Student table
         cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS {STUDENT_TABLE} (
+            {STUDENT_ID} TEXT PRIMARY KEY,
             {STUDENT_FIRST_NAME} TEXT NOT NULL,
             {STUDENT_LAST_NAME} TEXT NOT NULL,
-            {STUDENT_EMAIL} TEXT PRIMARY KEY,
+            {STUDENT_EMAIL} TEXT NOT NULL,
             {STUDENT_COUNTRY} TEXT NOT NULL
         )
         ''')
@@ -69,9 +74,11 @@ class DatabaseManager:
         cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS {DOC_TABLE} (
             {DOC_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+            {DOC_FILE_NAME} TEXT NOT NULL,
+            {DOC_SUMMARY} TEXT NOT NULL,
             {DOC_CONTENT} TEXT NOT NULL,
             {DOC_STUDENT_ID} TEXT NOT NULL,
-            FOREIGN KEY (student_id) REFERENCES {STUDENT_TABLE}({STUDENT_EMAIL})
+            FOREIGN KEY ({DOC_STUDENT_ID}) REFERENCES {STUDENT_TABLE}({STUDENT_ID})
         )
         ''')
         
@@ -117,13 +124,13 @@ class DatabaseManager:
         self.university_name = university_name
 
 
-    def add_student(self, email, first_name, last_name, country):
+    def add_student(self, s_id, email, first_name, last_name, country):
         conn, cursor = get_conn_and_cursor(self.db)
 
         cursor.execute(f'''
         SELECT 1 FROM {STUDENT_TABLE}
-        WHERE {STUDENT_EMAIL} = ?
-        ''', (email,))
+        WHERE {STUDENT_ID} = ?
+        ''', (s_id,))
 
         # Fetch one result
         result = cursor.fetchone()
@@ -134,62 +141,85 @@ class DatabaseManager:
 
         cursor.execute(f'''
         INSERT INTO {STUDENT_TABLE} (
+            {STUDENT_ID}, 
             {STUDENT_EMAIL}, 
             {STUDENT_FIRST_NAME}, 
             {STUDENT_LAST_NAME}, 
             {STUDENT_COUNTRY}
         )
-        VALUES (?, ?, ?, ?)
-        ''', (email, first_name, last_name, country))
+        VALUES (?, ?, ?, ?, ?)
+        ''', (s_id, email, first_name, last_name, country))
         conn.commit()
         conn.close()
         print("Student added successfully")
-    
 
-    def add_student_doc(self, student_id, doc_content):
+    
+    def check_document_exists(self, student_id, doc: Document):
         conn, cursor = get_conn_and_cursor(self.db)
+
+        cursor.execute(f'''
+        SELECT 1 FROM {DOC_TABLE}
+            WHERE {DOC_STUDENT_ID} = ? AND {DOC_FILE_NAME} = ?
+            ''', (student_id, doc.metadata[DOC_FILE_NAME]))
+
+
+        result = cursor.fetchone()
+        conn.close()
+
+        return result is not None
+
+
+    def add_student_doc(self, student_id, doc: Document):
+        conn, cursor = get_conn_and_cursor(self.db)
+        result = self.check_document_exists(student_id, doc)
+        if result:
+            print("Document already exists")
+            return
+
         cursor.execute(f'''
         INSERT INTO {DOC_TABLE} (
             {DOC_STUDENT_ID},
+            {DOC_FILE_NAME},
+            {DOC_SUMMARY},
             {DOC_CONTENT}
         )
-        VALUES (?, ?)
-        ''', (student_id, doc_content))
+        VALUES (?, ?, ?, ?)
+        ''', (str(student_id), doc.metadata[DOC_FILE_NAME], doc.metadata[DOC_SUMMARY], doc.text))
         
         conn.commit()
 
 
-    def retrieve_student(self, email):
+    def retrieve_student(self, s_id):
         conn, cursor = get_conn_and_cursor(self.db)
         cursor.execute(f'''
-        SELECT {STUDENT_FIRST_NAME}, {STUDENT_LAST_NAME}, {STUDENT_COUNTRY} FROM {STUDENT_TABLE}
-        WHERE email = ?
-        ''', (email,))
-        f_name, l_name, country = cursor.fetchone()
+        SELECT {STUDENT_FIRST_NAME}, {STUDENT_LAST_NAME}, {STUDENT_EMAIL}, {STUDENT_COUNTRY} FROM {STUDENT_TABLE}
+        WHERE {STUDENT_ID} = ?
+        ''', (s_id,))
+        f_name, l_name, email, country = cursor.fetchone()
         country = country if country else 'Not specified'
 
         conn.close()
-        return f_name, l_name, country
+        return f_name, l_name, email, country
     
 
-    def retrieve_student_doc(self, email):
+    def retrieve_student_doc(self, s_id):
         conn, cursor = get_conn_and_cursor(self.db)
         cursor.execute(f'''
-        SELECT {DOC_CONTENT} FROM {DOC_TABLE}
+        SELECT {DOC_SUMMARY} FROM {DOC_TABLE}
         WHERE {DOC_STUDENT_ID} = ?
-        ''', (email,))
+        ''', (s_id,))
         doc_content = cursor.fetchone()[0]
         conn.close()
         return doc_content
     
 
-    def retrieve_student_docs(self, email):
+    def retrieve_student_docs(self, s_id):
         conn, cursor = get_conn_and_cursor(self.db)
         cursor.execute(f'''
-        SELECT {DOC_CONTENT} FROM {DOC_TABLE}
+        SELECT {DOC_SUMMARY} FROM {DOC_TABLE}
         WHERE {DOC_STUDENT_ID} = ?
-        ''', (email,))
-        doc_contents = cursor.fetchall()
+        ''', (s_id,))
+        doc_contents = [i[0] for i in cursor.fetchall()]
         conn.close()
         return doc_contents
 
@@ -246,7 +276,7 @@ class DatabaseManager:
             conn.commit()
             print("Country added successfully")
         else:
-            print("University already exists")
+            print("Country already exists")
         
         conn.close()
     

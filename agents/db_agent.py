@@ -1,12 +1,22 @@
-from typing import List
+import os
+from typing import List, Union
 
 from tqdm.auto import tqdm
 from settings import db_file
+from storage.constants import DOC_SUMMARY
 from storage.manager import DatabaseManager
 from handlers.uni_handlers.base import get_uni_handler
 from prompting.generator import student_evaluation_prompt
-from parsing.pdf_parser import parse_pdf
-from agents.utils import get_llm_response, get_llm_response_multithreaded
+from agents.utils import get_llm_response
+from llama_index.core.schema import Document
+from agents.student_doc_summarization import add_student_doc_prompts, add_student_summarized_docs, get_student_docs
+
+from enum import Enum
+
+class EvalMode(Enum):
+    COURSE = "course"
+    COUNTRY = "country"
+    HYBRID = "hybrid"
 
 
 class DatabaseAgent:
@@ -16,9 +26,15 @@ class DatabaseAgent:
             db_file = db_file,
             db_overwrite=False,
         ):
-        self.university_data_store = get_uni_handler(uni_name)()
+        self.set_university_data_store(uni_name)
         self.db_manager = DatabaseManager(file=db_file, overwrite=db_overwrite)
     
+
+    def set_university_data_store(self, uni_name):
+        self.university_data_store = get_uni_handler(uni_name)()
+
+    def add_student(self, s_id, student_email, first_name, last_name, student_country):
+        self.db_manager.add_student(s_id, student_email, first_name, last_name, student_country)
     
     def add_university_courses(self):
         university_id = self.university_data_store.website
@@ -57,76 +73,97 @@ class DatabaseAgent:
         self.db_manager.add_university(university_id, university_name)
     
 
-    def get_course_requirements(self, student_email, course_name):
+    def get_course_requirements(self, course_name):
         assert course_name in self.university_data_store.courses, f"Course {course_name} not found"
-        _, _, country = self.db_manager.retrieve_student(student_email)
-
-        assert country in self.university_data_store.countries, f"Country {country} not supported by University"
-
+        
         university_id = self.university_data_store.website
-        course_entry_requirements = f"Course: {course_name}" + self.db_manager.retrieve_course_details(
+        course_entry_requirements = f"\nCourse {course_name} Requirements: " + self.db_manager.retrieve_course_details(
             university_id, course_name
         )
-        country_entry_requirements = f"Country: {country}\n" + self.db_manager.retrieve_country_details(
-            university_id,
-            country
-        )
 
-        return course_entry_requirements, country_entry_requirements
+        return course_entry_requirements
+    
 
+    def get_country_requirements(self, student_id):
+        _, _, country = self.db_manager.retrieve_student(student_id)
+        assert country in self.university_data_store.countries, f"Country {country} not supported by University"
         
-    def generate_evaluation_prompt(self, student_email, course_name):
-        course_entry_requirements, country_entry_requirements = self.get_course_requirements(
-            student_email, course_name
+        university_id = self.university_data_store.website
+        country_entry_requirements = f"\nCountry {country} Requirements: " + self.db_manager.retrieve_country_details(
+            university_id, country
         )
 
-        student_doc = self.db_manager.retrieve_student_doc(student_email)
+        return country_entry_requirements
+    
+        
+    def generate_evaluation_prompt(self, student_id, course_name, mode = EvalMode.COURSE.value):
+        entry_requirements = ""
+        if mode in [EvalMode.COURSE.value, EvalMode.HYBRID.value]:
+            entry_requirements += self.get_course_requirements(course_name)
+
+        elif mode in [EvalMode.COUNTRY.value, EvalMode.HYBRID.value]:
+            entry_requirements += self.get_country_requirements(student_id)
+
+
+        student_doc = self.get_student_application(student_id)
+
         prompt = student_evaluation_prompt(
             student_doc,
-            course_entry_requirements,
-            country_entry_requirements
+            entry_requirements,
         )
 
         return prompt
 
 
-    def generate_evaluation_prompts(self, student_email, course_name):
-        course_entry_requirements, country_entry_requirements = self.get_course_requirements(
-            student_email, course_name
-        )
+    def add_student_document(self, student_id, doc: Document):
+        self.db_manager.add_student_doc(student_id, doc)
+    
 
-        student_docs = self.db_manager.retrieve_student_docs(student_email)
+    def add_student_documents(self, student_id, docs: List[Document]):
+        for doc in tqdm(docs, desc="Adding student documents"):
+            self.add_student_document(student_id, doc)
+    
+
+    def get_student_application(self, student_id: Union[str, List]):
+        def get_student_docs(sid):
+            docs = self.db_manager.retrieve_student_docs(sid)
+            return "\n\n".join(docs)
         
-        prompts = [student_evaluation_prompt(
-            student_doc,
-            course_entry_requirements,
-            country_entry_requirements
-        ) for student_doc in student_docs]
-
-        return prompts
+        if isinstance(student_id, str):
+            return get_student_docs(student_id)
+        
+        elif isinstance(student_id, List):
+            return [get_student_docs(_id) for _id in student_id]
 
 
-    def add_student_document(self, student_email, document_path: str):
-        doc_contents = parse_pdf(document_path)
-        self.db_manager.add_student_doc(student_email, doc_contents)
-        print("Student document added successfully")
+    def get_docs_with_summaries(self, student_id: Union[str, List]):
+        student_documents = get_student_docs(student_id)
+        add_student_doc_prompts(student_documents)
+        add_student_summarized_docs(student_documents)
+
+        return student_documents
+
+    def summarize_and_add_docs(self, student_id: str):
+        student_documents = get_student_docs(student_id)
+        add_student_doc_prompts(student_documents)
+        docs_to_summarize = [d for d in student_documents\
+            if not self.db_manager.check_document_exists(student_id, d)]
+        if len(docs_to_summarize):
+            add_student_summarized_docs(docs_to_summarize)
+            self.add_student_documents(student_id, docs_to_summarize)
     
-
-    def add_student_documents(self, student_email, document_paths: List):
-        for document_path in tqdm(document_paths, desc="Adding student documents"):
-            self.add_student_document(student_email, document_path)
     
+    def summarize_and_add_student_docs(self, student_id: Union[str, List]):
+        if isinstance(student_id, str):
+            self.summarize_and_add_docs(student_id)
+        
+        elif isinstance(student_id, List):
+            for sid in student_id:
+                self.summarize_and_add_docs(sid)
 
-    def evaluate_student_doc(self, student_email, course_name):
-        student_data_prompt = self.generate_evaluation_prompt(student_email, course_name)
+
+    def evaluate_student_doc(self, student_id, course_name):
+        student_data_prompt = self.generate_evaluation_prompt(student_id, course_name)
         
         student_eval_response = get_llm_response(student_data_prompt)
         return student_eval_response
-
-    def evaluate_student_docs(self, student_email, course_name):
-        student_data_prompts = self.generate_evaluation_prompts(student_email, course_name)
-        
-        student_eval_responses = get_llm_response_multithreaded(
-            student_data_prompts, get_llm_response
-        )
-        return student_eval_responses

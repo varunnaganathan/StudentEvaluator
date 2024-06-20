@@ -28,7 +28,6 @@ import os
 # for vision model
 from google.cloud import vision
 from typing import Sequence
-import pickle
 
 
 """

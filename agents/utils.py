@@ -14,14 +14,11 @@ DEFAULT_LLM = "meta-llama/Meta-Llama-3-70B-Instruct"
 def get_llm_response(
         user_prompt, 
         task_prompt=None, 
-        system_prompt=None, 
+        system_prompt=STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT, 
         model_name=DEFAULT_LLM, 
         api_key=DEFAULT_API_KEY
     ):
-    sys_prompt = system_prompt if system_prompt else ""
-    sys_prompt = sys_prompt + "\n" + task_prompt if task_prompt else sys_prompt
-
-    sys_prompt = sys_prompt if sys_prompt else STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT
+    system_prompt = system_prompt + "\n" + task_prompt if task_prompt else system_prompt
 
     client = openai.OpenAI(
             base_url = "https://api.endpoints.anyscale.com/v1",
@@ -38,7 +35,7 @@ def get_llm_response(
     return response
 
 
-def get_llm_response_multithreaded(obj_list, handler, *args, num_workers=10):
+def get_llm_response_multithreaded(obj_list, handler=get_llm_response, *args, num_workers=10):
     responses = list()
     progress_bar = tqdm(total=len(obj_list), desc="Processing", unit="task")
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
@@ -49,8 +46,10 @@ def get_llm_response_multithreaded(obj_list, handler, *args, num_workers=10):
                 response = future.result()
                 responses.append(response)
             except Exception as exc:
+                responses.append("Not Available")
                 print(f"Prompt generated an exception: {exc}")
             finally:
                 progress_bar.update(1)
     progress_bar.close()
+    assert len(responses) == len(obj_list)
     return responses
