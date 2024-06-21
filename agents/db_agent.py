@@ -2,6 +2,7 @@ import os
 from typing import List, Union
 
 from tqdm.auto import tqdm
+from prompting.templates import STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT
 from settings import db_file
 from storage.constants import DOC_SUMMARY
 from storage.manager import DatabaseManager
@@ -85,7 +86,7 @@ class DatabaseAgent:
     
 
     def get_country_requirements(self, student_id):
-        _, _, country = self.db_manager.retrieve_student(student_id)
+        _, _, _, country = self.db_manager.retrieve_student(student_id)
         assert country in self.university_data_store.countries, f"Country {country} not supported by University"
         
         university_id = self.university_data_store.website
@@ -125,15 +126,15 @@ class DatabaseAgent:
     
 
     def get_student_application(self, student_id: Union[str, List]):
-        def get_student_docs(sid):
+        def get_docs_content(sid):
             docs = self.db_manager.retrieve_student_docs(sid)
             return "\n\n".join(docs)
         
         if isinstance(student_id, str):
-            return get_student_docs(student_id)
+            return get_docs_content(student_id)
         
         elif isinstance(student_id, List):
-            return [get_student_docs(_id) for _id in student_id]
+            return [get_docs_content(_id) for _id in student_id]
 
 
     def get_docs_with_summaries(self, student_id: Union[str, List]):
@@ -162,8 +163,10 @@ class DatabaseAgent:
                 self.summarize_and_add_docs(sid)
 
 
-    def evaluate_student_doc(self, student_id, course_name):
-        student_data_prompt = self.generate_evaluation_prompt(student_id, course_name)
+    def evaluate_student_doc(self, student_id, course_name, mode = EvalMode.COUNTRY.value):
+        student_data_prompt = self.generate_evaluation_prompt(student_id, course_name, mode)
         
-        student_eval_response = get_llm_response(student_data_prompt)
+        print(student_data_prompt)
+        student_eval_response = get_llm_response(student_data_prompt, system_prompt=STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT)
+        print(student_eval_response)
         return student_eval_response
