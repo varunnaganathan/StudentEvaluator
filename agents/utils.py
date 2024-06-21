@@ -14,11 +14,12 @@ DEFAULT_LLM = "meta-llama/Meta-Llama-3-70B-Instruct"
 def get_llm_response(
         user_prompt, 
         task_prompt=None, 
-        system_prompt=STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT, 
+        system_prompt=None, 
         model_name=DEFAULT_LLM, 
         api_key=DEFAULT_API_KEY
     ):
-    system_prompt = system_prompt + "\n" + task_prompt if task_prompt else system_prompt
+    system_prompt += "\n" + task_prompt if task_prompt else system_prompt
+
 
     client = openai.OpenAI(
             base_url = "https://api.endpoints.anyscale.com/v1",
@@ -35,11 +36,11 @@ def get_llm_response(
     return response
 
 
-def get_llm_response_multithreaded(obj_list, handler=get_llm_response, *args, num_workers=10):
+def get_llm_response_multithreaded(obj_list, handler=get_llm_response, num_workers=10, *args, **kwargs):
     responses = list()
     progress_bar = tqdm(total=len(obj_list), desc="Processing", unit="task")
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
-        future_responses = [executor.submit(handler, obj, *args) for obj in obj_list]
+        future_responses = [executor.submit(handler, obj, *args, **kwargs) for obj in obj_list]
     
         for future in as_completed(future_responses):
             try:
