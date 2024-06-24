@@ -2,9 +2,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import openai
 from tqdm.auto import tqdm
 from settings import api_keys_file
-from prompting.templates import (
-    STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT
-)
 
 api_keys = [key for key in open(api_keys_file).read().split('\n') if key != '']
 DEFAULT_API_KEY = api_keys[0]
@@ -36,7 +33,7 @@ def get_llm_response(
     return response
 
 
-def get_llm_response_multithreaded(obj_list, handler=get_llm_response, num_workers=10, *args, **kwargs):
+def run_multithreaded_handler(obj_list, handler=get_llm_response, num_workers=10, *args, **kwargs):
     responses = list()
     progress_bar = tqdm(total=len(obj_list), desc="Processing", unit="task")
     with ThreadPoolExecutor(max_workers=num_workers) as executor:

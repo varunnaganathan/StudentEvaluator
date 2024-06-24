@@ -1,16 +1,29 @@
-import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import json
 from typing import List, Union
-
+from storage.data import (
+    Student, 
+    StudentDocument, 
+    University, 
+    UniversityCountry, 
+    UniversityCourse
+)
 from tqdm.auto import tqdm
-from prompting.templates import STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT
+from prompting.templates import (
+    REQUIREMENTS_STRUCTURING_SYSTEM_PROMPT, 
+    STUDENT_CONTENT_EXTRACTION_SYSTEM_PROMPT, 
+    STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT
+)
 from settings import db_file
-from storage.constants import DOC_SUMMARY
 from storage.manager import DatabaseManager
+from storage.data import Student
 from handlers.uni_handlers.base import get_uni_handler
-from prompting.generator import student_evaluation_prompt
-from agents.utils import get_llm_response
-from llama_index.core.schema import Document
-from agents.student_doc_summarization import add_student_doc_prompts, add_student_summarized_docs, get_student_docs
+from prompting.generator import (
+    get_doc_content_ext_prompt, 
+    get_requirements_structuring_prompt, 
+    student_evaluation_prompt
+)
+from agents.utils import get_llm_response, run_multithreaded_handler
 
 from enum import Enum
 
@@ -34,101 +47,197 @@ class DatabaseAgent:
     def set_university_data_store(self, uni_name):
         self.university_data_store = get_uni_handler(uni_name)()
 
-    def add_student(self, s_id, student_email, first_name, last_name, student_country):
-        self.db_manager.add_student(s_id, student_email, first_name, last_name, student_country)
-    
-    def add_university_courses(self):
-        university_id = self.university_data_store.website
-        courses = self.university_data_store.courses
-        self.db_manager.add_university_courses(university_id, courses)
+
+    def add_student(self, student: dict):
+        student = Student(**student)
+        self.db_manager.add_student(student)
+
+    def retrieve_student(self, student_id: str):
+        return self.db_manager.retrieve_student(student_id)
     
 
-    def retrieve_course_details(self, course_name):
+    def add_university_courses(self):
+        courses = self.university_data_store.courses
+        for course_name, requirements in courses.items():
+            self.add_univerisity_course(course_name, requirements)
+    
+
+    def retrieve_course(self, course_name):
         university_id = self.university_data_store.website
-        return self.db_manager.retrieve_course_details(university_id, course_name)
+        return self.db_manager.retrieve_course(university_id, course_name)
+    
+
+    def update_course(self, course: UniversityCourse):
+        self.db_manager.update_course(course)
 
 
     def add_univerisity_course(self, course_name, entry_requirements):
         university_id = self.university_data_store.website
-        self.db_manager.add_univerisity_course(university_id, course_name, entry_requirements)
-        
-
-    def retrieve_country_details(self, country_name):
-        university_id = self.university_data_store.website
-        return self.db_manager.retrieve_country_details(university_id, country_name)
-    
+        university_course = UniversityCourse(
+            name=course_name,
+            entry_req=entry_requirements,
+            uni_id=university_id
+        )
+        self.db_manager.add_univerisity_course(university_course)
+            
 
     def add_university_countries(self):
-        university_id = self.university_data_store.website
         countries = self.university_data_store.countries
-        self.db_manager.add_university_countries(university_id, countries)
+        for country_name, requirements in countries.items():
+            self.add_university_country(country_name, requirements)
 
 
     def add_university_country(self, country_name, entry_requirements):
         university_id = self.university_data_store.website
-        self.db_manager.add_university_country(university_id, country_name, entry_requirements)
+        university_country = UniversityCountry(
+            uni_id=university_id,
+            country_name=country_name,
+            entry_req=entry_requirements
+        )
+        self.db_manager.add_university_country(university_country)
+
+
+    def retrieve_country(self, country_name):
+        university_id = self.university_data_store.website
+        return self.db_manager.retrieve_country(university_id, country_name)
+
+
+    def update_country(self, country):
+        self.db_manager.update_country(country)
+
+
+    def add_uni_courses_str_handler(self, uni_course: UniversityCourse):
+        _ = self.get_course_requirements_str(uni_course)
+        assert uni_course.entry_req_json is not None, f"Course {uni_course.name} requirements not found"
+        self.db_manager.update_course(
+            uni_course
+        )
+
+
+    def add_university_courses_structure(self, parallel=True, overwrite=False):
+        uni_courses = self.db_manager.retrieve_university_courses(self.university_data_store.website)
+        if parallel:
+            courses = [
+                uni_course for uni_course in uni_courses 
+                if uni_course.entry_req_json is None or overwrite
+            ]
+            run_multithreaded_handler(
+                courses,
+                handler=self.add_uni_courses_str_handler
+            )
+
+        else:
+            for uni_course in tqdm(uni_courses, desc='Adding courses structure'):
+                if uni_course.entry_req_json is None or overwrite:
+                    self.add_uni_courses_str_handler(uni_course)
+
+
+    def add_uni_countries_str_handler(self, uni_country: UniversityCountry):
+        _ = self.get_country_requirements_str(uni_country)
+        assert uni_country.entry_req_json is not None, f"Country {uni_country.country_name} requirements not found"
+        self.db_manager.update_country(
+            uni_country
+        )
+
+    def add_university_countries_structure(self, parallel=True, overwrite=False):
+        uni_countries = self.db_manager.retrieve_university_countries(self.university_data_store.website)
+        if parallel:
+            countries = [
+                uni_country for uni_country in uni_countries 
+                if uni_country.entry_req_json is None or overwrite
+            ]
+            run_multithreaded_handler(
+                countries,
+                handler=self.add_uni_countries_str_handler
+            )
+        else:
+            for uni_country in tqdm(uni_countries, desc='Adding countries structure'):
+                if uni_country.entry_req_json is None or overwrite:
+                    self.add_uni_countries_str_handler(uni_country)
 
 
     def add_university(self, university_name):
         university_id = self.university_data_store.website
-        self.db_manager.add_university(university_id, university_name)
+        university = University(
+            website=university_id,
+            name=university_name
+        )
+        
+        self.db_manager.add_university(university)
     
 
-    def get_course_requirements(self, course_name):
-        assert course_name in self.university_data_store.courses, f"Course {course_name} not found"
-        
-        university_id = self.university_data_store.website
-        course_entry_requirements = f"\nCourse {course_name} Requirements: " + self.db_manager.retrieve_course_details(
-            university_id, course_name
-        )
-
+    def get_course_requirements_str(self, uni_course: UniversityCourse):
+        assert uni_course.name in self.university_data_store.courses, f"Course {uni_course.name} not found"
+        req_json: str = uni_course.entry_req_json if uni_course.entry_req_json else self.get_course_requirements(uni_course)
+        course_entry_requirements = f"\nCourse {uni_course.name} Requirements: {req_json}"
         return course_entry_requirements
     
 
-    def get_country_requirements(self, student_id):
-        _, _, _, country = self.db_manager.retrieve_student(student_id)
-        assert country in self.university_data_store.countries, f"Country {country} not supported by University"
-        
-        university_id = self.university_data_store.website
-        country_entry_requirements = f"\nCountry {country} Requirements: " + self.db_manager.retrieve_country_details(
-            university_id, country
-        )
-
+    def get_country_requirements_str(self, uni_country: UniversityCountry):
+        assert uni_country.country_name in self.university_data_store.countries, f"Country {uni_country.country_name} not supported by University"
+        req_json: str = uni_country.entry_req_json if uni_country.entry_req_json else self.get_country_requirements(uni_country)
+        country_entry_requirements = f"\nCountry {uni_country.country_name} Requirements: {req_json}"
         return country_entry_requirements
     
         
-    def generate_evaluation_prompt(self, student_id, course_name, mode = EvalMode.COURSE.value):
-        entry_requirements = ""
+    def generate_evaluation_prompt(
+            self, 
+            student: Student, 
+            mode = EvalMode.COURSE.value
+        ):
+        requirements = ""
         if mode in [EvalMode.COURSE.value, EvalMode.HYBRID.value]:
-            entry_requirements += self.get_course_requirements(course_name)
+            course = self.retrieve_course(student.course)
+            requirements += self.get_course_requirements_str(course)
 
         elif mode in [EvalMode.COUNTRY.value, EvalMode.HYBRID.value]:
-            entry_requirements += self.get_country_requirements(student_id)
+            country = self.retrieve_country(student.country)
+            requirements += self.get_country_requirements_str(country)
 
 
-        student_doc = self.get_student_application(student_id)
+        student_docs = self.get_student_application(student.student_id, requirements)
 
         prompt = student_evaluation_prompt(
-            student_doc,
-            entry_requirements,
+            student,
+            student_docs,
+            requirements,
         )
 
         return prompt
 
 
-    def add_student_document(self, student_id, doc: Document):
-        self.db_manager.add_student_doc(student_id, doc)
+    def add_student_document(self, doc: dict):
+        doc = StudentDocument(**doc)
+        self.db_manager.add_student_doc(doc)
     
 
-    def add_student_documents(self, student_id, docs: List[Document]):
+    def add_student_documents(self, docs: List[dict]):
         for doc in tqdm(docs, desc="Adding student documents"):
-            self.add_student_document(student_id, doc)
+            self.add_student_document(doc)
     
+    def get_student(self, student_id):
+        return self.db_manager.retrieve_student(student_id)
 
-    def get_student_application(self, student_id: Union[str, List]):
+    def get_student_application(self, student_id: Union[str, List], requirements):
         def get_docs_content(sid):
             docs = self.db_manager.retrieve_student_docs(sid)
-            return "\n\n".join(docs)
+            if not docs:
+                print(f"No documents found for student {sid}")
+                return None
+            docs_to_structure = [d.content for d in docs if d.summary is None]
+            doc_content_ext_prompts = [
+                get_doc_content_ext_prompt(d.content, requirements) 
+                for d in docs_to_structure
+            ]
+            doc_responses = run_multithreaded_handler(
+                doc_content_ext_prompts,
+                system_prompt = STUDENT_CONTENT_EXTRACTION_SYSTEM_PROMPT
+            )
+            for r, d in zip(doc_responses, docs_to_structure):
+                d.summary = r
+                self.db_manager.update_student_doc(sid, d)
+            
+            return "\n\n".join([d.summary for d in docs])
         
         if isinstance(student_id, str):
             return get_docs_content(student_id)
@@ -137,36 +246,68 @@ class DatabaseAgent:
             return [get_docs_content(_id) for _id in student_id]
 
 
-    def get_docs_with_summaries(self, student_id: Union[str, List]):
-        student_documents = get_student_docs(student_id)
-        add_student_doc_prompts(student_documents)
-        add_student_summarized_docs(student_documents)
+    # def get_docs_with_summaries(self, student_id: Union[str, List]):
+    #     student_documents = get_student_docs(student_id)
+    #     add_student_doc_prompts(student_documents)
+    #     add_student_summarized_docs(student_documents)
 
-        return student_documents
+    #     return student_documents
 
-    def summarize_and_add_docs(self, student_id: str):
-        student_documents = get_student_docs(student_id)
-        add_student_doc_prompts(student_documents)
-        docs_to_summarize = [d for d in student_documents\
-            if not self.db_manager.check_document_exists(student_id, d)]
-        if len(docs_to_summarize):
-            add_student_summarized_docs(docs_to_summarize)
-            self.add_student_documents(student_id, docs_to_summarize)
+
+    # def summarize_and_add_docs(self, student_id: str):
+    #     student_documents = get_student_docs(student_id)
+    #     add_student_doc_prompts(student_documents)
+    #     docs_to_summarize = [d for d in student_documents\
+    #         if not self.db_manager.check_document_exists(student_id, d)]
+    #     if len(docs_to_summarize):
+            # add_student_summarized_docs(docs_to_summarize)
+    #         self.add_student_documents(student_id, docs_to_summarize)
     
     
-    def summarize_and_add_student_docs(self, student_id: Union[str, List]):
-        if isinstance(student_id, str):
-            self.summarize_and_add_docs(student_id)
+    # def summarize_and_add_student_docs(self, student_id: Union[str, List]):
+    #     if isinstance(student_id, str):
+    #         self.summarize_and_add_docs(student_id)
         
-        elif isinstance(student_id, List):
-            for sid in student_id:
-                self.summarize_and_add_docs(sid)
+    #     elif isinstance(student_id, List):
+    #         for sid in student_id:
+    #             self.summarize_and_add_docs(sid)
 
 
-    def evaluate_student_doc(self, student_id, course_name, mode = EvalMode.COUNTRY.value):
-        student_data_prompt = self.generate_evaluation_prompt(student_id, course_name, mode)
+    def evaluate_student(self, student: Student, mode = EvalMode.COUNTRY.value):
+        student_data_prompt = self.generate_evaluation_prompt(student, mode)
         
         print(student_data_prompt)
-        student_eval_response = get_llm_response(student_data_prompt, system_prompt=STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT)
+        student_eval_response = get_llm_response(
+            student_data_prompt, 
+            system_prompt=STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT
+        )
         print(student_eval_response)
         return student_eval_response
+
+
+    def get_country_requirements(self, country: UniversityCountry):        
+        requirements_structuring_prompt = get_requirements_structuring_prompt(
+            country.entry_req, country_name=country.country_name
+        )
+        structured_requirements = get_llm_response(
+            requirements_structuring_prompt,
+            system_prompt=REQUIREMENTS_STRUCTURING_SYSTEM_PROMPT
+        )
+        country.entry_req_json = structured_requirements
+        self.update_country(country)
+        structured_requirements = json.dumps(json.loads(structured_requirements), indent=4)
+        return structured_requirements
+
+
+    def get_course_requirements(self, uni_course: UniversityCourse):
+        requirements_structuring_prompt = get_requirements_structuring_prompt(
+            uni_course.entry_req, course_name=uni_course.name
+        )
+        structured_requirements = get_llm_response(
+            requirements_structuring_prompt,
+            system_prompt=REQUIREMENTS_STRUCTURING_SYSTEM_PROMPT
+        )
+        uni_course.entry_req_json = structured_requirements
+        self.update_course(uni_course)
+        structured_requirements = json.dumps(json.loads(structured_requirements), indent=4)
+        return structured_requirements

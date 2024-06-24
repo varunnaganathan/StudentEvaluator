@@ -1,6 +1,6 @@
 STUDENT_DOC_SUMMARIZER_SYSTEM_PROMPT = \
 """ 
-You are an expert in summarizing PDF documents and extract out the crucial information from such documents.
+You are an expert in summarizing PDF documents and extract out the crucial, relevant information from such documents.
 """
 
 
@@ -16,6 +16,9 @@ Clearly call out any ambiguous info and info that is not clearly mentioned. Do n
 Output format -
 Document name: <document_name>
 Summary: <summary>
+
+Note: DO NOT make assumptions. If the information is not present, clearly mention that.
+DO NOT add supporting text like "Please tell me if you need more information, how may I assist you" etc.
 """
 
 STUDENT_QUALIFICATION_EVALUATION_SYSTEM_PROMPT = \
@@ -26,33 +29,181 @@ You are an expert in evaluating if a student meets the entry requirement of a un
 STUDENT_QUALIFICATION_EVALUATION = \
 """
 Given the below student qualification information and the requirements of a university for their programs for students of a specific country. 
-Evaluate if the student meets all the criteria. 
+Evaluate if the student meets all the criteria and provide a clear verdict about pass or fail based on points of success and failure.
 
 Output format -
-1. Point of failure: Where the student does not meet criteria.
-2. Point of ambiguity: Ambiguous points where either data is absent or the criteria is not clear. Need human intervention.
-3. Points of communication: Need to get back to the student since data needed is not provided. Here the data is not ambiguous but is not present at all.
+1. Point of success: Where the student meets the criteria of the entry requirements and provide evidence for the success.
+2. Point of failure: Where the student does not meet criteria. Provide an clear explanation about the failure.
+3. Point of ambiguity: Ambiguous points where either data is absent or the criteria is not too clear. Need human intervention.
+4. Points of communication: Need to get back to the student since data needed is not provided. Here the data is not ambiguous but is not present at all.
 
-Here is the student qualification information -
+Verdict: Pass/Fail
+---------------
+
+Here is the student qualification information applying for {student_level} -
 {student_doc_content}
+---------------
 
 Here are the requirements of the university -
 {entry_requirements}
 """
 
-COURSE_UNIVERSITY_REQUIREMENT = \
-"""
-Below is the requirements of a university for a given course. Summarize it in the form of a course -> requirements form 
-"""
-
-COUNTRY_UNIVERSITY_REQUIREMENT = \
-"""
-Below is the requirements of a university for a student of a particular country. Summarize it in the form of a country -> requirements form 
-"""
 
 COUNTRY_EXTRACTION_TEMPLATE = \
 """
 Extract the country of the student from the given text. 
 Provide the response in the following format -
 Country: <country_name>
+"""
+
+
+REQUIREMENTS_STRUCTURING_SYSTEM_PROMPT = \
+"""
+You are a university admission expert for international students. 
+You have been tasked with extracting the information that is crucial, relevant for the evaluation of a student's application in a university.
+"""
+
+REQUIREMENTS_TEMPLATE_FORMAT = \
+"""
+You need to extract the relevant key requirements and their cutoffs in case of explicitly given cutoff for the requirement, e.g., "CGPA": ">= 4.1".
+You need to do this for all the different type of study levels like graduate, undergradute, postgraduate.
+The extracted information should be structured in the following format:
+{
+    "Course Type": [
+        {
+        "Requirement": "Requirement Name",
+        "Cutoff": "Cutoff Value"
+        },
+        {
+            "Requirement": "Requirement Name",
+            "Cutoff": "Cutoff Value"
+        }
+    ]
+}
+
+Output ONLY the JSON object without any supporting text. No extra text like - "Here is the extracted information:".
+
+For example:
+Requirements for a student:
+For entry to: Undergraduate Programmes , You will need: A levels taken in Nepal , Grade required: As per course A Level Requirements
+For entry to: Advanced Undergraduate / Undergraduate Top-Up , You will need: Bachelor Degree 3 years study (Nepalese classification) (entry to 2nd year) , Grade required: 65%
+For entry to: Postgraduate Programmes , You will need: Bachelor degree 3 years , Grade required: 55%
+For entry to: Graduate Certificate , You will need: Bachelor degree 3 years , Grade required: 50%
+
+Output format in exportable JSON:
+
+{
+    "Undergraduate Programmes": [
+        {
+            "Requirement": "A levels taken in Nepal",
+            "Cutoff": "As per course A Level Requirements"
+        }
+    ],
+    "Advanced Undergraduate / Undergraduate Top-Up": [
+        {
+            "Requirement": "Bachelor Degree 3 years study (Nepalese classification) (entry to 2nd year)",
+            "Cutoff": "65%"
+        }
+    ],
+    "Postgraduate Programmes": [
+        {
+            "Requirement": "Bachelor degree 3 years",
+            "Cutoff": "55%"
+        }
+    ],
+    "Graduate Certificate": [
+        {
+            "Requirement": "Bachelor degree 3 years",
+            "Cutoff": "50%"
+        }
+    ]
+}
+"""
+
+COUNTRY_REQUIREMENTS_TEMPLATE = \
+"""
+Below are the country-specific requirements for an admission to a university for a student from {country_name}:
+{entry_requirements}
+"""
+
+
+COURSE_REQUIREMENTS_TEMPLATE = \
+"""
+Below are the country-specific requirements for an admission to a university for a student from {course_name}:
+{entry_requirements}
+"""
+
+STUDENT_CONTENT_EXTRACTION_SYSTEM_PROMPT = \
+"""
+You are an expert in extracting the relevant information from a student's document for university admission based on the entry requirement criteria provided to you.
+"""
+
+STUDENT_CONTENT_EXTRACTION_PROMPT = \
+"""
+Below is the text extracted from a student's PDF document.
+Extract the information about the JSON fields based on the JSON schema provided below.
+
+{requirement}
+
+Here is the student document - 
+
+{student_doc_content}
+"""
+
+STUDENT_CONTENT_EXTRACTION_EXAMPLE = \
+"""
+
+Output format -
+{
+    "Found Field 1": "Value 1",
+    "Found Field 2": "Value 2",
+    .
+    .
+    .
+    "Found Field N": "Value N"
+}
+
+Note: If a field is not found, do not include it in the output.
+Note: DO Not include extra text like "Here is the extracted information:" and only provide the JSON object.
+
+For example:
+Student document information:
+
+National University Gazipur, Bangladesh
+NUCU 17-1-10-021632
+This is to certify that PROVISIONAL CERTIFICATE Bachelor of Arts
+
+Md- Afix Ali
+Roll No
+7730393
+Regn.No: 13210045478
+Session:. 2013-14
+Son/Daughter of
+Md-Montaz Ali and Nawarun Nasa of M. C. College, Sylhet obtained the Degree of Bachelor of Arts in with CGPA Bengali 3.03 under National University in the Examination of (Four Year Honour's) 2017 out of 4.00.
+Date of Printing: October 18, 2018
+NATIONALUNIVERSITY NATIONAL
+Controller of Examination
+N.B. This provisional certificate must be surrendered at the time of taking delivery of original certificate.
+ERSITY NATIONALUNIVE
+LINIVERSITY NATIONALUNIVERSI
+
+Requirements: 
+
+"Postgraduate Programmes": [
+    {
+        "Requirement": "Masters Degree – in a relevant subject area (depending on programme applied for)",
+        "Cutoff": "Good"
+    },
+    {
+        "Requirement": "Masters Degree – CGPA",
+        "Cutoff": "4.0"
+    }
+],
+
+Output format -
+
+{
+    "Masters Degree – in a relevant subject area (depending on programme applied for)": "Bachelor of Arts in Bengali, Four Year Honour's",
+    "Masters Degree – CGPA": "3.03",
+}
 """
