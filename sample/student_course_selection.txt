@@ -1,7 +1,0 @@
-
-Id  Course
-10145419    MSc International Project Management with Advanced Practice
-10445379    MSc Business with Marketing Management
-10195309    MSc Digital Marketing
-10360981    MSc Business with International Management
-10325808    MSc Business with International Management
