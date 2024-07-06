@@ -1,0 +1,15 @@
+Document name: Passport
+
+Summary: 
+- Name: ABDUL WAHID KHAN
+- Nationality: PAKISTANI
+- Date of Birth: 05 JUN 1996
+- Sex: M
+- Father's Name: KHAN, MUHAMMAD ISHAQ
+- Place of Birth: BAGH, PAKISTAN
+- Passport Number: G8707906
+- Date of Issue: 28 OCT 2022
+- Date of Expiry: 27 OCT 2027
+
+Ambiguous/Not clearly mentioned:
+- The text does not clearly mention the student's address or any other contact information.

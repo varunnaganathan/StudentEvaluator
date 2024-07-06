@@ -1,0 +1,17 @@
+Document name: Letter of Recommendation (LOR)
+
+Summary: 
+This document is a letter of recommendation written by Dr. D. Loganathan, Professor & Head of the Department of Computer Science and Engineering, SVS College of Engineering, for Surya M Suresh.
+
+Key details:
+- Student's name: Surya M Suresh
+- Register Number: 722014104038
+- Course: Computer Science and Engineering
+- Batch: 2014-2018
+- Personal information: Kind, obedient, and uniformly good conduct and character
+- Recommendation: Recommended for admission to a university/institution
+- Recommender's information: Dr. D. Loganathan, Professor & Head, Department of Computer Science and Engineering, SVS College of Engineering
+- Institution details: SVS College of Engineering, Coimbatore-642 109, Tamil Nadu, India
+
+Ambiguous information: None
+Not clearly mentioned information: None

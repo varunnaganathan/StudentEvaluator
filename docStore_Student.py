@@ -54,6 +54,7 @@ class StudentData():
 
     def getLLMSummaryDocData(self, docpath, data):
         # make openai call here
+        prompts = llm_filter_info.Prompts()
         return utils.get_llm_response(
              user_prompt="",
              task_prompt="",

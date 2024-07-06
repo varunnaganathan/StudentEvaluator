@@ -1,0 +1,23 @@
+Document name: Recommendation Letter 1
+
+Summary:
+This is a recommendation letter for Md Afiz Ali, son of Md Montaz Ali and Nawarun Nasa.
+
+Personal Information:
+- Name: Md Afiz Ali
+- Father's Name: Md Montaz Ali
+- Mother's Name: Nawarun Nasa
+
+Qualifications:
+- Degree: Bachelor of Arts in Bangla
+- Academic Session: 2013-14
+- Roll Number: 7730393
+- Registration Number: 13210045478
+- CGPA: 3.03 out of 4.00
+
+Other Details:
+- The letter is written by Sheikh Md Najrul Islam, Assistant Professor, Department of Bangla, M.C. College, Sylhet.
+- The letter certifies that Md Afiz Ali was a regular student of the college and was not involved in any anti-state activity during his academic session.
+
+Ambiguous/Not Clearly Mentioned:
+- No information about the purpose of the letter or the university/program Md Afiz Ali is applying to.

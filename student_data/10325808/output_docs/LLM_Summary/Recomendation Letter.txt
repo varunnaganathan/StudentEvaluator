@@ -1,0 +1,18 @@
+Document name: Recommendation Letter
+
+Summary:
+This is a recommendation letter written by Dr. Marina Sajid, Assistant Professor at the Institute of Food and Nutritional Sciences, PMAS-Arid Agriculture University, Rawalpindi, Pakistan. The letter recommends Mr. Abdul Wahid Khan, son of Muhammad Ishaq Khan, with Registration No. 15-ARID-5254, for admission to a university.
+
+Key details:
+- Name: Abdul Wahid Khan
+- Father's name: Muhammad Ishaq Khan
+- Registration No.: 15-ARID-5254
+- Institute: Institute of Food and Nutritional Sciences, PMAS-Arid Agriculture University, Rawalpindi, Pakistan
+- Qualities: studious, hardworking, cooperative, well-organized, reliable, and capable of working independently
+
+Ambiguous/missing information:
+- Date of birth
+- Address
+- Educational qualifications (other than being an undergraduate student)
+- Specific university being applied to
+- Course/program being applied for

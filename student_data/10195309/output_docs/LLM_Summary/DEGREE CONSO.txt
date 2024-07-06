@@ -1,0 +1,17 @@
+Document name: Consolidated Statement of Grades (Degree Certificate)
+
+Summary: 
+
+* Name of the candidate: SURYA M SURESH
+* College of Study: SVS COLLEGE OF ENGINEERING, ANNA UNIVERSITY, CHENNAI-600 025
+* Programme & Branch: B.E. Computer Science and Engineering
+* Date of Birth: 08-NOV-95
+* Gender: FEMALE
+* Medium of Instruction: English
+* Course details:
+	+ Completed 8 semesters
+	+ Total 31 courses (theory and lab) with grades and credits
+	+ Cumulative Grade Point Average (CGPA): 7.06
+	+ Classification: FIRST CLASS
+
+Note: The document does not provide information about the student's passport details or other personal information beyond what is mentioned above.

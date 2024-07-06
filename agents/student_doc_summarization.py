@@ -3,7 +3,7 @@ import os
 from typing import List, Union
 from settings import student_data_dir, student_output_docs_dir
 from prompting.templates import STUDENT_CERTIFICATE_SUMMARIZATION_PROMPT, STUDENT_DOC_SUMMARIZER_SYSTEM_PROMPT
-from agents.utils import get_llm_response_multithreaded
+from agents.utils import run_multithreaded_handler
 from storage.constants import DOC_FILE_NAME, DOC_SUMMARY
 
 
@@ -42,7 +42,7 @@ def add_student_doc_prompts(docs: Union[List, List[List]]):
 
 def add_student_summarized_docs(student_docs: Union[List[Document], List[List[Document]]]):
     def add_summaries(docs: List[Document]):
-        summaries = get_llm_response_multithreaded([d.text for d in docs], system_prompt=STUDENT_DOC_SUMMARIZER_SYSTEM_PROMPT)
+        summaries = run_multithreaded_handler([d.text for d in docs], system_prompt=STUDENT_DOC_SUMMARIZER_SYSTEM_PROMPT)
         for i in range(len(docs)):
             docs[i].metadata[DOC_SUMMARY] = summaries[i]
         
