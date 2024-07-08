@@ -1,47 +1,18 @@
 import streamlit as st
 from data import (
     load_student_data, 
-    load_university_data, 
-    load_universities,
-    update_students_db
 )
 
 from agents.utils import (
     get_llm_response
 )
 
+import zipfile
+
 from decision_agent import (
     get_student_decison_for_university
 )
-import random
 
-def test_func():
-    st.write("Hello World")
-
-def add_student():
-    student_id = f"{random.choice([101, 102, 103, 104])}{random.randint(10000, 99999)}"
-    with st.form(key='student_data_form'):
-        first_name = st.text_input("First Name", key='first_name')
-        last_name = st.text_input("Last Name", key='last_name')
-        email = st.text_input("Email", key='email')
-        course = st.text_input("Course", key='course')
-        country = st.text_input("Country", key='country')
-
-
-        student_data = {
-            'student_id': student_id,
-            'first_name': first_name,
-            'last_name': last_name,
-            'email': email,
-            'course': course,
-            'country': country,
-        }
-
-        st.form_submit_button(
-            "Submit", 
-            on_click=update_students_db,
-            args=(student_data,)
-        )
 
 
 def uploaded_file_handler(student_id):
@@ -62,45 +33,6 @@ def upload_file(student_id):
         args=(student_id,)
     )
 
-
-def manage_student_data():
-    st.selectbox(
-        'Add/Update Student Data', 
-        ['Add Student Data', 'Update Student Data'],
-        key='add_update_student_data',
-        index=None,
-    )
-
-    add_or_update = st.session_state['add_update_student_data']
-    if add_or_update == 'Add Student Data':
-        st.markdown("#### Upload a New Student Data")
-        add_student()
-        
-
-    elif add_or_update == 'Update Student Data':
-        st.markdown("#### Update Student Data")
-        students = load_student_data()
-        st.selectbox(
-            'Select Student ID', 
-            list(students.keys()), 
-            index=None,
-            key='student_id',
-        )
-    
-    student_id = st.session_state.get('student_id')
-    if student_id and add_or_update:
-        if add_or_update == 'Update Student Data':
-            students = load_student_data()
-            student = students[student_id]
-            name = student['first_name'] + " " + student['last_name']
-            st.markdown(f"#### Update {name} Data")
-        else:
-            name = "New Student"
-            st.markdown(f"#### Add New Student Data")
-
-
-
-        upload_file(student_id)
 
 
 def evaluate_student():

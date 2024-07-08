@@ -6,12 +6,14 @@ from settings import student_data_dir, university_data_dir
 
 
 def update_students_db(student_data):
+    print(student_data)
     student_id = student_data['student_id']
     student_data = {student_id: student_data}
     students = load_student_data()
     students.update(student_data)
     students = pd.DataFrame(list(students.values()))
     students.to_excel(os.path.join(student_data_dir, "Students.xlsx"), index=False)
+    print("Students Excel Updated")
     load_student_data.clear()
     st.session_state['student_id'] = student_id
 
