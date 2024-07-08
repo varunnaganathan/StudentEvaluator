@@ -9,7 +9,6 @@ def parse_args():
     arg_parser = ArgumentParser()
     arg_parser.add_argument('--uni_name', type=str, default='NorthUmbria')
     arg_parser.add_argument('--db_overwrite', action='store_true')
-    arg_parser.add_argument('--multithreading', action='store_true')
     args = arg_parser.parse_args()
     return args
 
