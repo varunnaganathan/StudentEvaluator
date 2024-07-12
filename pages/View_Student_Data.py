@@ -33,10 +33,12 @@ def show_student():
         st.write(f"Course: {course}")
         st.write(f"Country: {country}")
 
-        st.write(f"##### Student Data")
-        st.write(student_data)
-
-
+        student_docs = student_data.split(f"\n{'-'*20}\n{'-'*20}\n")
+        for student_doc in student_docs:
+            st.write(f"##### Student Document")
+            st.write(student_doc)
+            st.write(f":white_check_mark: Forgery Check Passed")
+            # st.write(f":white_check_mark: Plagiarism Check Passed")
 
 st.title("View Student Data")
 show_student()

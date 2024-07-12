@@ -1,0 +1,32 @@
+[
+    {
+        "type": "University Requirement Rule",
+        "rule": "A student must complete 120 credits to graduate.",
+        "description": "A student must complete 120 credits to graduate.",
+        "id": 1
+    },
+    {
+        "type": "University Requirement Rule",
+        "rule": "A student must complete 30 credits at the University of Washington to graduate.",
+        "description": "A student must complete 30 credits at the University of Washington to graduate.",
+        "id": 2
+    },
+    {
+        "type": "University Requirement Rule",
+        "rule": "A student must complete 45 credits at the 300 level or above to graduate.",
+        "description": "A student must complete 45 credits at the 300 level or above to graduate.",
+        "id": 3
+    },
+    {
+        "type": "University Requirement Rule",
+        "rule": "A student must complete 60 credits at a 4-year institution to graduate.",
+        "description": "A student must complete 60 credits at a 4-year institution to graduate.",
+        "id": 4
+    },
+    {
+        "type": "University Requirement Rule",
+        "rule": "A new rule",
+        "description": "Description",
+        "id": 5
+    }
+]

@@ -207,3 +207,32 @@ Output format -
     "Masters Degree – CGPA": "3.03",
 }
 """
+
+
+GENERAL_PROMPT = """
+You need to evaluate a student for a degree and university he is applying to. Youll be given a single university requirement, the students relevant qualification for that requirement
+and a set of tools to perform the evaluation. The tools are
+1. MathTool - to compare any numeric criteria like grade and marks between university requirement and student qualifications.
+2. DocCheck tool - if you feel information isnt present of the student or incomplete info supplied, this tool can be used to check if student has provided needed info and documents.
+3. Use your own reasoning if the evaluation is more subjective in nature.
+
+For each set of requirements and qualification, use appropriate tool, evaluate response and reply of form of json like this - {"Verdict":"True/False/Ambiguous","Comments":"Describe why he meets or doenst meet the criteria"}.
+Dont give any additional info and follow output format.
+
+"""
+
+output_format = """
+"Requirement1, student qualification1 : { "decision":"True / False / math / data incomplete", "Reasoning":"Explain your reasoning for the decision"}
+"""
+
+prompt_agentic = f"""
+Given the json of universite requirements corresponding student qualificatications for each requirement, 
+you need to do the following
+evaluate each requirement, qualification pair and decide if it involved mathematical comparison or logical reasoning to decide if the student is eligible,
+1. if it involves mathematical requirement , extract only the mathematical / numeric parts to be compared for each requirement, qualification pair and label the pair as "math".
+2. If it involves logical or language based comparison, compare and output True, false telling if the student meets the requirement for that requirement, qualification pair or not.
+3. if data is incomplete to evaluate , output "data incomplete" as decision.
+end output for each (requirement, qualification) pair should be of format {output_format}. dont output anything else but the json in output format and dont make any new facts up.
+here are the university requirements for the country and course student has applied to as well as the student's qualifications. 
+
+"""
