@@ -53,9 +53,11 @@ def show_decision_pairs(decision_pairs, student_data):
 
 
 def view_pdf(f, count):
-    viewing_pdf = st.session_state.get("viewing_pdf", False)
+    # print("Viewing PDF: ", f)
+    # print("Count: ", count)
+    viewing_pdf = st.session_state.get(f"viewing_pdf_{count}", False)
     if viewing_pdf:
-        pdf_viewer(f)
+        pdf_viewer(f, key=f"pdf_viewer_{count}")
         button = st.button(
             "Close",
             key=f"close_{count}"
@@ -86,7 +88,7 @@ def show_decision_pair(decision_pair, student_data, count):
     
     file_path = os.path.join(student_data_dir, str(student_id), file_name).split('.txt')[0] + ".pdf"
     if os.path.exists(file_path):
-        st.write(f"Support File Path: {file_path}")
+        # st.write(f"Support File Path: {file_path}")
         view_pdf(file_path, count)
 
 
@@ -164,7 +166,6 @@ def reset_student_session_data():
 def get_decision_result(university_name, student_data):
 
     university_requirements = get_university_requirements(university_name, student_data)
-    show_university_requirements(university_requirements)
     
     student_id = str(student_data['student_id'])
     student_qualifications = get_student_data(student_id)
@@ -189,6 +190,8 @@ def get_decision_result(university_name, student_data):
     #     }
     # }
     # student_decision_pairs = f"```{student_decision_pairs}```"
+    
+    show_university_requirements(university_requirements)
     show_decision_pairs(student_decision_pairs, student_data)
 
     final_decision_report = get_student_final_decision(student_decision_pairs)
