@@ -1,4 +1,6 @@
+import ast
 import json
+import pandas as pd
 import streamlit as st
 from data import (
     load_student_data, 
@@ -40,21 +42,19 @@ def upload_file(student_id):
     )
 
 
-def show_decision_pairs(decision_pairs, student_data):
-    import ast
-    if '```' in decision_pairs:
-        with st.expander("Show Decision Data"):
-            decision_pairs = ast.literal_eval(decision_pairs.split('```')[1])
-            for i, key in enumerate(decision_pairs):
-                value = decision_pairs[key]
-                st.markdown(f"##### Decision-based on {key}")
-                show_decision_pair(value, student_data, i+1)
-                st.markdown('---')
+def get_supporting_doc_path(doc_id):
+    student_id = st.session_state.get('student_id', None)
+    if not student_id:
+        st.error("Student ID not found")
+        return
+    doc_id_to_f_name = json.load(open(os.path.join(student_data_dir, 'student_doc_map_inv.json')))
+    file_name = doc_id_to_f_name[doc_id] if doc_id in doc_id_to_f_name else "Not Available"
+    file_path = os.path.join(student_data_dir, str(student_id), file_name).split('.txt')[0] + ".pdf"
+    return file_path if os.path.exists(file_path) else "File Not Found"
+
 
 
 def view_pdf(f, count):
-    # print("Viewing PDF: ", f)
-    # print("Count: ", count)
     viewing_pdf = st.session_state.get(f"viewing_pdf_{count}", False)
     if viewing_pdf:
         pdf_viewer(f, key=f"pdf_viewer_{count}")
@@ -63,41 +63,101 @@ def view_pdf(f, count):
             key=f"close_{count}"
         )
         if button:
-            st.session_state['viewing_pdf'] = False
+            st.session_state[f'viewing_pdf_{count}'] = False
             st.rerun()
-    else:
-        st.button(
-            "View PDF",
-            on_click=lambda: st.session_state.update(viewing_pdf=True),
-            key=f"view_{count}"
-        )
 
+
+def set_viewing_pdf(i):
+    st.session_state[f'viewing_pdf_{i}'] = True
+
+
+def show_df(df):
+    col_widths = {
+        "Requirement": 2,
+        "Qualification": 2,
+        "Decision": 2,
+        "Reason": 2,
+        "Text": 2,
+        "Document": 2
+    }
+    cols = st.columns(list(col_widths.values()))
+    df_cols = list(col_widths.keys())
+
+    for col, df_col in zip(cols, df_cols):
+        col.markdown(f"###### {df_col}")
+
+    for i, row in df.iterrows():
+        cols = st.columns(list(col_widths.values()))
+        for col, df_col in zip(cols[:-1], df_cols[:-1]):
+            col.write(row[df_col])
         
-def show_decision_pair(decision_pair, student_data, count):
-    file_available = False
-    student_id = student_data['student_id']
-    doc_id_to_f_name = json.load(open(os.path.join(student_data_dir, 'student_doc_map_inv.json')))
-
-
-    decision = decision_pair['decision'] if 'decision' in decision_pair else "Not Available"
-    decision_emoji = ":white_check_mark:" if decision == 'pass' else (':x:' if decision == 'fail' else (':question:' if decision == 'ambiguous' else ':grey_question:'))
-    st.write(f"Decision: {decision} {decision_emoji}")
-    support_doc_id = decision_pair['support_doc_id'] if 'support_doc_id' in decision_pair else "Not Available"
-    file_name = doc_id_to_f_name[support_doc_id] if support_doc_id in doc_id_to_f_name else "Not Available"
-    st.write(f"Support File Name: {file_name}")
+        disabled = st.session_state.get(f"viewing_pdf_{i}", False)
+        supporting_doc = row["Document"]
+        cols[-1].button(
+            f"{'View' if supporting_doc != 'Not Available' else 'NA'}",
+            key=f"view_pdf_{i}",
+            disabled=disabled or supporting_doc == "Not Available",
+            on_click=set_viewing_pdf,
+            args=(i,)
+        )
+        
     
-    file_path = os.path.join(student_data_dir, str(student_id), file_name).split('.txt')[0] + ".pdf"
-    if os.path.exists(file_path):
-        # st.write(f"Support File Path: {file_path}")
-        view_pdf(file_path, count)
+    for i, row in df.iterrows():
+        view_pdf(row["Document"], i)
+
+    # st.dataframe(
+    #     df.drop(columns=["Document"]),
+    #     hide_index=True
+    # )
+    # documents = list({d for d in df["Document"].tolist()})
+    # for i in range(0, len(documents), 3):
+    #     button = st.button(
+    #         f"View {documents[i].split(os.sep)[-1].split('.pdf')[0]}",
+    #         key=f"view_pdf_{i}"
+    #     )
+    #     if button:
+    #         view_pdf(documents[i], i)
+        
 
 
-    supporting_text = decision_pair['supporting_text'] if 'supporting_text' in decision_pair else "Not Available"
-    st.write(f"Supporting Text: {supporting_text}")
+def show_decision_pairs(decision_pairs):
+    
+    if '```' in decision_pairs:
+        st.markdown("###### Decision Details")
+        decision_pairs = ast.literal_eval(decision_pairs.split('```')[1])
 
-    return file_available
+        rows = list()
+        for _, decision_key in enumerate(decision_pairs):
+            decision_value = decision_pairs[decision_key]
+            requirement = decision_value['requirement']
+            qualification = decision_value['qualification'] + '\n' + decision_value['qualification_result']
+            
+            decision = decision_value['decision']
+            decision_emoji = ":white_check_mark:" if decision == 'pass' else (':x:' if decision == 'fail' else (':question:' if decision == 'ambiguous' else ':grey_question:'))
+            decision_emoji = "✅" if decision == 'pass' else ('❌' if decision == 'fail' else ('❓' if decision == 'ambiguous' else '❔'))
+            decision = f"{decision_emoji}"
 
+            reasoning = decision_value['reasoning']
+            supporting_text = decision_value['supporting_text'] if 'supporting_text' in decision_value else "Not Available"
+            
+            support_doc_id = decision_value['support_doc_id'] if 'support_doc_id' in decision_value else "Not Available"
+            doc_path = get_supporting_doc_path(support_doc_id)
 
+            rows.append(
+                {
+                    "Requirement": requirement,
+                    "Qualification": qualification,
+                    "Decision": decision,
+                    "Reason": reasoning,
+                    "Text": supporting_text,
+                    "Document": doc_path
+                }
+            )
+        
+        df = pd.DataFrame(rows)
+        show_df(df)
+    else:
+        st.write("Unable to show decision details")
 
 
 def show_university_requirements(uni_reqs: str):
@@ -140,7 +200,7 @@ def evaluate_student(re_evaluate=False):
         final_decision_report = student_response['student_decision']
 
         show_university_requirements(university_requirements)
-        show_decision_pairs(student_decision_pairs, student_data)
+        show_decision_pairs(student_decision_pairs)
         show_final_decision_report(final_decision_report)
     else:
         st.session_state['evaluating'] = True
@@ -197,7 +257,7 @@ def get_decision_result(university_name, student_data):
     
     show_university_requirements(university_requirements)
     
-    show_decision_pairs(student_decision_pairs, student_data)
+    show_decision_pairs(student_decision_pairs)
 
     show_final_decision_report(final_decision_report)
 

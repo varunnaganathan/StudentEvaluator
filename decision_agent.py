@@ -160,7 +160,7 @@ def get_student_data_keys(university_requirement, student_qual):
     def get_response():
         output_example = """
         {
-            "Requirement": "IELTS 6.5 (or above) with no single element below 5.5 or equivalent",
+            "requirement": "IELTS 6.5 (or above) with no single element below 5.5 or equivalent",
             "qualification": "No IELTS score mentioned",
             "qualification_result": "Does not meet the requirement",
             "doc_id": "1",
@@ -170,10 +170,11 @@ def get_student_data_keys(university_requirement, student_qual):
         STUDENT_GET_KEYS_DATA_PROMPT = f"""
         Below are qualifications of a student given across all the documents he has submitted. Given these qualifications and some university requirements in key, value json format.
         Create a new JSON keeping the university key, value pairs intact, and add the following information.
-        1. qualification: Student qualifications for the given key along with it to the same json.
-        2. qualification_result: Clearly mention if the student qualifications does not have the qualifications corresponding to a key present in the updated json you provide. Make sure to provide only factual details of the student qualifications from the documents provided. 
-        3. doc_id: Provide the document ID for the student document
-        4. qualification_text: Provide the text extracted from the student document responsible for the qualification.
+        1. requirement: The requirement for the given key
+        2. qualification: Student qualifications for the given key along with it to the same json.
+        3. qualification_result: Clearly mention if the student qualifications does not have the qualifications corresponding to a key present in the updated json you provide. Make sure to provide only factual details of the student qualifications from the documents provided. 
+        4. doc_id: Provide the document ID for the student document
+        5. qualification_text: Provide the text extracted from the student document responsible for the qualification.
 
         
         Here are the student qualifications - \n {student_qual}. \n
@@ -206,7 +207,7 @@ def get_student_decision_keys(student_value_pairs: dict, student_id):
     def get_response():
         output_example = """
         {
-            "Requirement": "IELTS 6.5 (or above) with no single element below 5.5 or equivalent",
+            "requirement": "IELTS 6.5 (or above) with no single element below 5.5 or equivalent",
             "qualification": "No IELTS score mentioned",
             "qualification_result": "Does not meet the requirement",
             "doc_id": "1",
@@ -241,7 +242,6 @@ def get_student_decision_keys(student_value_pairs: dict, student_id):
     decision_pairs = None
     while not decision_pairs or '```' not in decision_pairs:
         decision_pairs = get_response()
-
     print("Student Decision Pairs Extracted")
     # update_file_paths(decision_pairs, student_id)
 
