@@ -254,7 +254,7 @@ def get_student_final_decision(student_decision_pairs):
     FINAL_DECISION_PROMPT = f"""
     Given a JSON with university requirements for a course admission, student qualifications for each requirement, and a decision for each requirement,
     generate a final decision report summarizing final decision, point of failure in meeting requirements, points of success in meeting requirements and points of ambiguity where more information is either needed 
-    from a human evaluator or from the student to provide more info. Here is the json - {student_decision_pairs}
+    from a human evaluator or from the student to provide more info. The output of the report should be in well structure report format. Here is the JSON - {student_decision_pairs}
     """
     
     final_decision_report = get_llm_response(
@@ -288,62 +288,6 @@ def get_university_requirements(university_name, student_data):
     uni_reqs = json.load(open(os.path.join(university_data_dir, university_name, "course_x_country_requirements.json")))
     uni_req = uni_reqs[country][course][0].split("```")[1]
     return uni_req
-
-
-def update_file_paths(student_decision_pairs, student_id):
-    if '```' in student_decision_pairs:
-        student_decision_pairs = json.loads(student_decision_pairs.split('```')[1])
-    else:
-        return
-    # print(json.dumps(student_decision_pairs, indent=4))
-    existing_file_names = [
-        f for f in os.listdir(os.path.join(student_data_dir, student_id))
-        if os.path.isfile(os.path.join(student_data_dir, student_id, f))
-    ]
-    predicted_file_names = [
-        v['support_file_name'] for _, v in student_decision_pairs.items()
-        if 'support_file_name' in v and v['support_file_name'] != "-"\
-    ]
-    
-    print(existing_file_names)
-    print(predicted_file_names)
-
-    output_example = """
-    {
-        "CV (Curriculum Vitae)": ["CV.pdf", "Resume.pdf"],
-        "Consolidated Statement of Grades (Degree Certificate)": ["DEGREE PROVISIONAL.pdf", "Degree Certificate.pdf", "Degree.pdf"],
-        "IELTS Certificate": "-",
-    }
-    """
-
-    file_name_alignment_prompt = f"""
-    Given a list of file names extracted from student documents and a list of file names of the student documents,
-    align the file names to the correct file of the student documents. If a file name is not present in the student documents, mention add it as "-".
-    In case there are multiple student document files that can be matched with a support file name, mention all the possible file names. 
-    
-    Here are the file names extracted from student documents - {existing_file_names}
-    Here are the file names predicted to be responsible for a qualification - {predicted_file_names}
-
-
-    Output Example:
-    {output_example}
-    """
-
-    print(file_name_alignment_prompt)
-
-    file_name_alignment = get_llm_response(
-        file_name_alignment_prompt, 
-        system_prompt="You are an expert in aligning file names to the correct file in a given list of files"
-    )
-
-    if '```' in file_name_alignment:
-        file_name_alignment = json.loads(file_name_alignment.split("```")[1])
-
-        for k, v in student_decision_pairs.items():
-            if 'support_file_name' in v and v['support_file_name'] != "-":
-                student_decision_pairs[k]['support_file_name'] = file_name_alignment[v['support_file_name']]
-
-    return student_decision_pairs
 
 
 def get_student_decison_for_university(university_name, student_data):

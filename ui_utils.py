@@ -43,13 +43,13 @@ def upload_file(student_id):
 def show_decision_pairs(decision_pairs, student_data):
     import ast
     if '```' in decision_pairs:
-        # with st.expander("Show Decision Data"):
-            
-        decision_pairs = ast.literal_eval(decision_pairs.split('```')[1])
-        for i, key in enumerate(decision_pairs):
-            value = decision_pairs[key]
-            st.markdown(f"##### Decision-based on {key}")
-            show_decision_pair(value, student_data, i+1)
+        with st.expander("Show Decision Data"):
+            decision_pairs = ast.literal_eval(decision_pairs.split('```')[1])
+            for i, key in enumerate(decision_pairs):
+                value = decision_pairs[key]
+                st.markdown(f"##### Decision-based on {key}")
+                show_decision_pair(value, student_data, i+1)
+                st.markdown('---')
 
 
 def view_pdf(f, count):
@@ -103,18 +103,20 @@ def show_decision_pair(decision_pair, student_data, count):
 def show_university_requirements(uni_reqs: str):
     def print_dict(d, indent=0):
         for key, value in d.items():
-            st.write('##### ' + str(key))
+            st.write(f'{"#"*(indent + 4)}' + ' ' + str(key))
             if isinstance(value, dict):
                 print_dict(value, indent + 1)
             else:
                 st.write(str(value))
 
     uni_reqs = json.loads(uni_reqs)
-    print_dict(uni_reqs)
+    with st.expander("University Requirements"):
+        print_dict(uni_reqs)
 
 
 def show_final_decision_report(final_decision_report):
-    st.write(f"##### Final Decision Report\n{final_decision_report}")
+    with st.expander("Final Decision Report"):
+        st.write(f"##### Final Decision Report\n{final_decision_report}")
 
 
 def evaluate_student(re_evaluate=False):
@@ -171,6 +173,7 @@ def get_decision_result(university_name, student_data):
     student_qualifications = get_student_data(student_id)
     student_value_pairs = get_student_data_keys(university_requirements, student_qualifications)
     student_decision_pairs = get_student_decision_keys(student_value_pairs, student_id)
+    final_decision_report = get_student_final_decision(student_decision_pairs)
 
     # student_decision_pairs = {
     #     "English Proficiency": {
@@ -191,11 +194,11 @@ def get_decision_result(university_name, student_data):
     # }
     # student_decision_pairs = f"```{student_decision_pairs}```"
     
+    
     show_university_requirements(university_requirements)
+    
     show_decision_pairs(student_decision_pairs, student_data)
 
-    final_decision_report = get_student_final_decision(student_decision_pairs)
-    # final_decision_report = "Student has met all the requirements"
     show_final_decision_report(final_decision_report)
 
 
