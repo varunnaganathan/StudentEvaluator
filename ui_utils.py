@@ -228,7 +228,8 @@ def student_evaluator_flow():
 
     print("Student Evaluated: ", student_evaluated)
 
-    if st.session_state['student_id']:
+    student_id = st.session_state.get('student_id', None)
+    if student_id:
         re_evaluate = False
         evaluate = st.button(
             "Evaluate Student"
