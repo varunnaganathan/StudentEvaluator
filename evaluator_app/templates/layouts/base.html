@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+<!-- Primary Meta Tags -->
+<title>
+    Echo {{title}} {% block title %}{% endblock %}
+</title>
+
+
+{% include 'includes/stylesheets.html' %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+</head>
+
+
+<body>
+
+    {% include 'layouts/top-nav.html' %}
+    {% include 'layouts/navbar.html' %}
+
+    {% block content %}{% endblock content %}
+
+    {% include 'layouts/footer.html' %}
+    {% block footer %}{% endblock footer %}
+
+
+    {% include 'includes/scripts.html' %}
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<section class="evaluate">
+    <div class="container">
+        <div class="header">
+            <p>Student ID: <span id="student-id">123456</span></p>
+            <p>University: <span id="university">McMaster University</span> | Course: <span id="course">Computer Science</span></p>
+        </div>
+        <div class="main">
+            <div class="sidebar">
+                <ul>
+                    <li class="tab">Student Info</li>
+                    <li class="tab">Academic</li>
+                    <li class="tab">English</li>
+                    <li class="tab">Visa</li>
+                    <li class="tab">Exceptions</li>
+                    <li class="tab">App Notes</li>
+                </ul>
+            </div>
+            <div class="content" id="content">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>    
+</section>
+
+
+<script>
+    $(document).ready(function() {
+        // Load default content
+        $("#content").load("{% url 'student_info' %}");
+
+        $(".tab").click(function() {
+            $(".tab").removeClass("active");
+            $(this).addClass("active");
+
+            var tabName = $(this).text().trim().toLowerCase().replace(' ', '_');
+            var url = "{% url 'student_info' %}".replace('student_info', tabName);
+
+            $("#content").load(url);
+        });
+    });
+</script>

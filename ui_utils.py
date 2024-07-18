@@ -72,51 +72,51 @@ def set_viewing_pdf(i):
 
 
 def show_df(df):
-    col_widths = {
-        "Requirement": 2,
-        "Qualification": 2,
-        "Decision": 2,
-        "Reason": 2,
-        "Text": 2,
-        "Document": 2
-    }
-    cols = st.columns(list(col_widths.values()))
-    df_cols = list(col_widths.keys())
+    # col_widths = {
+    #     "Requirement": 2,
+    #     "Qualification": 2,
+    #     "Decision": 2,
+    #     "Reason": 2,
+    #     "Text": 2,
+    #     "Document": 2
+    # }
+    # cols = st.columns(list(col_widths.values()))
+    # df_cols = list(col_widths.keys())
 
-    for col, df_col in zip(cols, df_cols):
-        col.markdown(f"###### {df_col}")
+    # for col, df_col in zip(cols, df_cols):
+    #     col.markdown(f"###### {df_col}")
 
-    for i, row in df.iterrows():
-        cols = st.columns(list(col_widths.values()))
-        for col, df_col in zip(cols[:-1], df_cols[:-1]):
-            col.write(row[df_col])
+    # for i, row in df.iterrows():
+    #     cols = st.columns(list(col_widths.values()))
+    #     for col, df_col in zip(cols[:-1], df_cols[:-1]):
+    #         col.write(row[df_col])
         
-        disabled = st.session_state.get(f"viewing_pdf_{i}", False)
-        supporting_doc = row["Document"]
-        cols[-1].button(
-            f"{'View' if supporting_doc != 'Not Available' else 'NA'}",
-            key=f"view_pdf_{i}",
-            disabled=disabled or supporting_doc == "Not Available",
-            on_click=set_viewing_pdf,
-            args=(i,)
-        )
+    #     disabled = st.session_state.get(f"viewing_pdf_{i}", False)
+    #     supporting_doc = row["Document"]
+    #     cols[-1].button(
+    #         f"{'View' if supporting_doc != 'Not Available' else 'NA'}",
+    #         key=f"view_pdf_{i}",
+    #         disabled=disabled or supporting_doc == "Not Available",
+    #         on_click=set_viewing_pdf,
+    #         args=(i,)
+    #     )
         
     
-    for i, row in df.iterrows():
-        view_pdf(row["Document"], i)
+    # for i, row in df.iterrows():
+    #     view_pdf(row["Document"], i)
 
-    # st.dataframe(
-    #     df.drop(columns=["Document"]),
-    #     hide_index=True
-    # )
-    # documents = list({d for d in df["Document"].tolist()})
-    # for i in range(0, len(documents), 3):
-    #     button = st.button(
-    #         f"View {documents[i].split(os.sep)[-1].split('.pdf')[0]}",
-    #         key=f"view_pdf_{i}"
-    #     )
-    #     if button:
-    #         view_pdf(documents[i], i)
+    st.dataframe(
+        df.drop(columns=["Document"]),
+        hide_index=True
+    )
+    documents = list({d for d in df["Document"].tolist()})
+    for i in range(0, len(documents), 3):
+        button = st.button(
+            f"View {documents[i].split(os.sep)[-1].split('.pdf')[0]}",
+            key=f"view_pdf_{i}"
+        )
+        if button:
+            view_pdf(documents[i], i)
         
 
 

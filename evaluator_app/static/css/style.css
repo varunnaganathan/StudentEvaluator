@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap');
+
+:root {
+    --brand: #8e93ad;
+    --dark: #092032;
+    --body: #516171;
+    --border: rgba(0,0,0,0.08);
+    --shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    
+}
+
+body {
+    font-family: "Barlow", sans-serif;
+    color: var(--body);
+    line-height: 1.7;
+}
+
+h1,h2,h3,h4,h5,h6,
+.display-1,.display-2,.display-3,.display-4 {
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    color: var(--dark);
+    transition: all 0.4s ease;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--brand);
+}
+
+section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.text-brand {
+    color: var(--brand) !important;
+}
+
+
+/* navbar */
+.top-nav {
+    background-color: var(--brand);
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.top-nav p {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.top-nav span,
+.top-nav i {
+    vertical-align: middle;
+}
+
+.navbar {
+    box-shadow: var(--shadow);
+}
+
+.social-icons a {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+}
+
+.social-icons a:hover {
+    background-color: #fff;
+    color: var(--brand);
+}
+
+.navbar .navbar-nav .nav-link {
+    color: var(--dark);
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: var(--brand);
+}
+
+.navbar .navbar-nav .nav-link.active {
+    color: var(--brand);
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.navbar-brand .dot {
+    color: var(--brand);
+}
+
+.btn {
+    padding: 8px 26px;
+}
+
+.btn-brand {
+    border-color: var(--brand);
+    background-color: var(--brand);
+    color: #fff;
+}
+
+.btn-brand:hover {
+    background-color: #7d87b9;
+    border-color: #7d87b9;
+    color: #fff;
+}
+
+
+
+.evaluate .container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.evaluate .header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.evaluate .main {
+    display: flex;
+}
+
+
+.sidebar {
+    width: 20%;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+.sidebar li {
+    padding: 10px;
+    cursor: pointer;
+}
+.sidebar li:hover, .sidebar li.active {
+    background-color: #ddd;
+}
+.content {
+    width: 80%;
+    padding: 10px;
+}
+.content h2 {
+    margin-top: 0;
+}
+.table-container {
+    margin-top: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.buttons {
+    margin-top: 20px;
+}
+.buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+footer {
+    background: linear-gradient(0deg, rgba(8, 32, 50, 0.9), rgba(8, 32, 50, 0.9)), url(../img/bg_banner1.jpg), #082032;;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+footer .footer-top {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+footer .navbar-brand {
+    color: #fff;
+}
+
+footer p {
+    color: #ADB3B9;
+}
+
+footer .social-icons a {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+input.form-control {
+    border-color: transparent;
+    height: 44px;
+}
+
+.form-control {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.04);;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--brand);
+}
