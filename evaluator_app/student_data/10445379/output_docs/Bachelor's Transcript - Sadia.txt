@@ -1,0 +1,242 @@
+file name = ./sample/10445379/Bachelor's Transcript - Sadia.pdfINSTRUCTIONS:
+Numerical
+Letter
+Grade
+Marks
+Grade
+Point
+80 and above
+A+
+4.00
+75 to 79
+A
+3.75
+70 to 74
+A-
+3.50
+65 to 69
+B+
+3.25
+60 to 64
+B
+3.00
+55 to 59
+B-
+2.75
+50 to 54
+C+
+2.50
+45 to 49
+C
+2.25
+40 to 44
+D
+2.00
+<40
+F
+0.00
+UNIVERSITY OF DHAKA
+Grade Certificate/Academic Transcript
+4th Year B.A Honours Final Examination of 2020
+SUBJECT: ENGLISH
+The following grades are obtained by: SADIA ISLAM
+Name of the College: Begum Badrunnessa Govt. Girls College
+Registration No. 31711012537 Session: 2016-2017
+at the 4th Year B.A Honours Examination 2020, held in February 2022
+Issue No: 201223
+Date: 11-12-2023
+Examination Roll No. 14529
+1st YEAR
+2nd YEAR
+Paper
+Course Title
+Credits
+Code
+A
+212009 Introducing Sociology
+4
+B- 2.75
+Letter Grade Paper
+Grade Point Code
+221101 Introduction to Drama
+Letter Grade
+Course Title
+Credits
+Grade Point
+4
+C+ 2.50
+211107
+Introduction to Prose: Fiction and
+Non-Fiction:
+4
+0
+2.25
+221103 Romantic Poetry
+4
+D
+2.00
+211105 Introduction to Poetry
+4
+C+
+2.50
+221105 Advanced Reading and Writing
+221107 History of English Literature
+4
+C+
+2.50
+4
+C
+2.25
+211103 English Writing Skills
+4
+C
+2.25
+222009 Sociology of Bangladesh
+4
+C+
+2.50
+211101 English Reading Skills
+4
+D 2.00
+221909
+211501
+History of the Emergence of
+Independent Bangladesh
+Political Organization and
+Political System of UK and USA
+4
+C
+2.25
+4
+C+
+2.50
+2nd YEAR TOTAL CREDITS & GPA
+24
+2.33
+1st YEAR TOTAL CREDITS & GPA
+24
+2.38
+3rd YEAR
+4th YEAR
+Paper
+Course Title
+Credits
+Code
+Letter Grade
+Grade Point
+Paper
+Code
+Course Title
+Credits
+Letter Grade
+Grade Point
+231115 Introduction to Linguistics
+4
+C
+2.25
+Introduction to Literary
+231113
+4.
+C+
+2.50
+Criticism(Up to Romantic Period).
+241101 Nineteenth Century Novel
+241103 Twentieth Century Poetry
+241105 Modern Drama
+4
+B-
+2.75
+4
+C+
+2.50
+4
+B-
+2.75
+231111 Victorian Poetry
+4
+Restoration and Eighteenth
+231109
+4
+00
+C+
+2.50 241107 Twentieth Century Novel
+4
+B-
+2.75
+C
+2.25
+241109 American Poetry
+4
+C+
+2.50
+Century Poetry and Drama
+241111
+231107
+Restoration and Eighteenth
+4
+C+ 2.50
+American Literature: Fiction and
+Drama
+4
+B+
+3.25
+Century Fiction.
+241113 Classics in Translation
+17th and 18th Century Non-
+231105
+4
+B-
+2.75
+Fictional Prose
+241115 Literary Criticism (From Victorian
+to Modern Age)
+44
+C
+2.25
+B 3.
+3.00
+231103 16th and 17th Century Poetry
+4
+C+
+2.50
+241119
+Elizabethan and Jacobean
+231101
+4.
+C+
+2.50
+Approaches and Methods of
+Language Teaching
+4
+B-
+2.75
+Drama
+241120 Viva-voce
+4
+B
+3.00
+3rd YEAR TOTAL CREDITS & GPA
+32
+2.47
+4th YEAR TOTAL CREDITS & GPA
+40
+2.75
+TOTAL CREDITS
+120
+CGPA (1st-4th Year)
+2.52
+RESULT
+Passed
+Result Publication Date: 23-11-2023
+ADMINISTRATIVE BUILDING
+UNIVERSITY OF DHAKA
+NILKHET, DHAKA-1000
+BANGLADESH.
+Mukrimul Islam
+Prepared By
+Date: 11/12/2023
+Compared By
+Date: 11/12/2023
+Deputy Controller of Examinations
+UNIVERSITY OF DHAKACSCamScanner
+

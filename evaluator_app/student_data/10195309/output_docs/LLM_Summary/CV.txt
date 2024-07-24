@@ -1,0 +1,31 @@
+Document name: CV (Curriculum Vitae)
+
+Summary:
+
+**Personal Information:**
+
+* Name: Surya M Suresh
+* Date of Birth: 08/11/1995
+* Marital Status: Single
+* Languages: English, Malayalam, Tamil
+* Contact Information: Address - Hor la hanz, Dubai; Phone - +971508430229; Email - suryamsuresh.mulla@gmail.com
+
+**Education:**
+
+* Bachelor of Computer Science Engineering from SVS College of Engineering, Tamil Nadu (2014-2018) with an aggregate mark of 71% from Anna University Coimbatore
+* Certification in Web Development UI/UX Course from Aspire Gate Institution
+
+**Work Experience:**
+
+* UI Designer at Digicollect Private Limited (2019-2022) - Developed user interface for internal and external applications, ensured usability during technical implementation, and provided design support during development and execution
+* Relationship Executive at Aegis Company (2019) - Responded to customer enquiries, provided a full spectrum of services, and achieved high-standard customer satisfaction
+
+**Skills:**
+
+* Software: Illustrator, Adobe XD, Figma, Visual Design
+* Expertise: Wireframes & Sketches, Prototyping, User Flows, Draw.io, Storyboard, Photoshop
+
+**Ambiguous/Not Clearly Mentioned:**
+
+* The exact duration of the work experience at Aegis Company is not specified.
+* The relevance of the education and certification to the work experience is not explicitly stated.

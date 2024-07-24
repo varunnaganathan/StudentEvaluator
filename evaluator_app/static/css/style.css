@@ -129,7 +129,6 @@ section {
 }
 
 
-
 .evaluate .container {
     width: 80%;
     display: flex;
@@ -145,6 +144,11 @@ section {
     display: flex;
 }
 
+.evaluate .header p  {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
 
 .sidebar {
     width: 20%;
@@ -195,14 +199,6 @@ th, td {
 
 
 
-
-
-
-
-
-
-
-
 footer {
     background: linear-gradient(0deg, rgba(8, 32, 50, 0.9), rgba(8, 32, 50, 0.9)), url(../img/bg_banner1.jpg), #082032;;
     background-size: cover;
@@ -211,7 +207,7 @@ footer {
 }
 
 footer .footer-top {
-    padding-top: 80px;
+    padding-top: 20px;
     padding-bottom: 40px;
 }
 

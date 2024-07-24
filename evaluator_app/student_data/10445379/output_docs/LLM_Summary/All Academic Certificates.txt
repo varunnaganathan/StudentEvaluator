@@ -1,0 +1,25 @@
+Here is the output in the required format:
+
+**Document 1: Bachelor of Arts Certificate**
+Summary: 
+This document is a certificate of completion of a Four-Year Bachelor of Arts Honours Degree in English from the University of Dhaka. The student, Sadia Islam, obtained a CGPA of 2.52 on a scale of 4.00. The certificate was issued on December 3, 2023.
+
+**Document 2: Online Result Sheet**
+Summary: 
+This document is an online result sheet from the University of Dhaka, Department of English, for the 4th-year Honours examination in 2020. The student, Sadia Islam, passed with a CGPA of 2.52. The result was published on November 23, 2023.
+
+**Document 3: Higher Secondary Certificate Examination 2015**
+Summary: 
+This document is a certificate of completion of the Higher Secondary Certificate Examination in 2015 from the Board of Intermediate and Secondary Education, Chittagong. The student, Sadia Islam Mita, passed with a GPA of 3.75 in the Humanities group.
+
+**Document 4: Academic Transcript**
+Summary: 
+This document is an academic transcript from the Board of Intermediate and Secondary Education, Chittagong, for the Higher Secondary Certificate Examination in 2015. The student, Sadia Islam Mita, passed with a GPA of 3.75 in the Humanities group.
+
+**Document 5: Secondary School Certificate Examination 2013**
+Summary: 
+This document is a certificate of completion of the Secondary School Certificate Examination in 2013 from the Board of Intermediate and Secondary Education, Rajshahi. The student, Sadia Islam, passed with a GPA of 4.44 in the Humanities group. The date of birth of the student is September 8, 1997.
+
+**Document 6: Academic Transcript**
+Summary: 
+This document is an academic transcript from the Board of Intermediate and Secondary Education, Rajshahi, for the Secondary School Certificate Examination in 2013. The student, Sadia Islam, passed with a GPA of 4.44 in the Humanities group. The date of birth of the student is September 8, 1997.

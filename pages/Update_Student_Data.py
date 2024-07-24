@@ -9,7 +9,7 @@ from decision_agent import (
     get_student_data
 )
 
-from data_processing_utils import (
+from evaluator_app.data_processing_utils import (
     ocr_student_documents
 )
 

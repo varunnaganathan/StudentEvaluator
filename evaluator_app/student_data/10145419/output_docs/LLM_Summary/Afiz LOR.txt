@@ -1,0 +1,22 @@
+Document name: Letter of Recommendation (LOR)
+
+Summary: 
+
+* Student's name: Md Afiz Ali
+* Father's name: Md Montaz Ali
+* Mother's name: Nawarun Nasa
+* Qualifications: Bachelor of Arts in Bangla
+* Institution: M.C. College, Sylhet
+* Academic session: 2013-14
+* Roll no: 7730393
+* Registration no: 13210045478
+* CGPA: 3.03 out of 4.00
+
+The document is a letter of recommendation written by two professors, Sheikh Md Najrul Islam and Dr. Shaheda Akhter, for Md Afiz Ali. Both professors attest to Md Afiz Ali's academic performance, character, and extracurricular activities during his undergraduate studies. They recommend him for higher studies.
+
+Ambiguous information: None
+
+Information not clearly mentioned: 
+- Date of birth of the student
+- Address of the student
+- Purpose of applying to international universities (not mentioned explicitly, but implied)

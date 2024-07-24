@@ -1,0 +1,20 @@
+Document name: Passport
+
+Summary: 
+
+* Personal Information: 
+  - Name: SADIA ISLAM
+  - Father's Name: MD AMINUL ISLAM
+  - Mother's Name: ROKSANA KHATUN
+  - Permanent Address: KHALIAPARA, ULLAPARA MODEL, ULLAHPARA - 6760, SIRAJGANJ
+  - Emergency Contact: MD AMINUL ISLAM (FATHER), 17/1/GA, SHANTIBAGH, SHAHJAHANPUR, SHANTINAGAR - 1217, DHAKA, +8801330555488
+  - Nationality: BANGLADESHI
+  - Date of Birth: 08 SEP 1997
+  - Place of Birth: SIRAJGANJ
+  - Sex: F
+* Passport Information:
+  - Passport Number: A13312723
+  - Previous Passport No: (Not mentioned)
+  - Date of Issue: 30 NOV 2023
+  - Date of Expiry: 29 NOV 2033
+  - Issuing Authority: DIP/DHAKA

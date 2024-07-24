@@ -1,0 +1,1070 @@
+[
+
+    [
+        """
+            Here is the parsed information for the countries from the given JSON data:
+
+### Botswana
+- **Undergraduate Programmes**: Diploma from University of Botswana, Grade required: Credit
+- **Postgraduate Programmes**: Masters Degree in a relevant subject area, Grade required: Good
+- **Graduate Certificate**: Degree from the University of Botswana, Grade required: 2.1 or above
+- **Postgraduate Diploma**: B average / 2:1, Grade required: 2.1 or above
+
+### Cameroon
+- **Undergraduate Programmes**: Cameroon GCE A Level, Grade required: 3 A levels or equivalent
+- **Diplôme Universitaire de Technologie**: 12/20, Grade required: 3 A levels or equivalent
+- **Advanced Entry / Undergraduate Top-Up**: Diplôme Supérieur d’Études Professionnelles, Grade required: 12/20
+- **Postgraduate**: Diplôme d’Études Supérieures de Commerce or Diplôme d’Ingénieur or Maîtrise, Grade required: 12/20 (2:2 equivalent) or 14/20 (2:1 equivalent)
+- **Graduate Certificate**: Bachelor degree, Licence or Diplôme d’Études Supérieures de Commerce or Diplôme d’Ingénieur or Maîtrise, Grade required: 10/20
+
+### Egypt
+- **Undergraduate Programmes**: General Secondary School Certificate, Grade required: –
+- **Advanced Undergraduate / Undergraduate Top-Up**: Bachelor degree (from a higher institute), Grade required: 65%
+- **Postgraduate Programmes**: Bachelor Degree from recognised State University, Grade required: 65% (2:2 equivalent) or 75% (2:1 equivalent)
+- **Bachelor degree from recognised University (Arts classification)**: 70% (2:2 equivalent) or 80% (2:1 equivalent), Grade required: 65% (2:2 equivalent) or 75% (2:1 equivalent)
+- **Bachelor degree from recognised University (Sciences classification)**: 65% (2:2 equivalent) or 75% (2:1 equivalent), Grade required: 65% (2:2 equivalent) or 75% (2:1 equivalent)
+- **Graduate Certificate**: Bachelor Degree from recognised University, Grade required: 50%
+
+### Ethiopia
+- **Undergraduate Programmes**: Advanced Diploma (12+3), Grade required: B / Good / 3
+- **Advanced Undergraduate / Undergraduate Top-Up**: Bachelor Degree (3 years), Grade required: B / Good / 3.5; Bachelor Degree (4 years), Grade required: B / Good / 3
+- **Postgraduate Programmes**: Masters Degree, Grade required: B / 3 (2:2 equivalent) or B / 3.5 (2:1 equivalent)
+- **Graduate Certificate**: Masters Degree, Grade required: C / Satisfactory / 2
+
+### Ghana
+- **Undergraduate Programmes**: Polytechnic National Diploma, Grade required: –
+- **Level 5/6 entry Top-Up / Undergraduate Top-Up**: Polytechnic Higher National Diploma, Grade required: Second class lower / 50% / C / 2.0 (2:2 equivalent) or Second class upper / 60% / B / 3.0 (2:1 equivalent)
+- **Postgraduate Programmes**: Bachelor Degree, Grade required: Second class lower / 50% / C / 2.0 (2:2 equivalent) or Second class upper / 60% / B / 3.0 (2:1 equivalent)
+- **Graduate Certificate**: Bachelor Degree, Grade required: 1.5/4.0 CGPA or 40% (pass)
+
+### Kenya
+- **Undergraduate Programmes**: Kenyan Certificate of Secondary Education (KCSE), Grade required: Grades A-C
+- **Postgraduate Programmes**: Bachelors Degree, Grade required: Min 50% (2:2 equivalent) or Min 60% (2:1 equivalent)
+- **Post Graduate Diploma**: 55% / Credit minimum, Grade required: Min 50% (2:2 equivalent) or Min 60% (2:1 equivalent)
+- **Graduate Certificate**: Bachelors Degree, Grade required: Min 40% / Pass
+
+### Liberia
+- **Undergraduate Programmes**: Case by case basis, Grade required: –
+- **Postgraduate**: Liberian Masters degree, Grade required: Minimum 70-79% / C grade (2:2 equivalent) or Minimum 80-89% / B grade (2:1 equivalent)
+- **Graduate Certificate**: Liberian Masters degree, Grade required: Minimum 65%
+
+### Libya
+- **Undergraduate Programmes**: Higher Technician Diploma, Grade required: 70%
+- **Postgraduate Programmes**: Libyan University Bachelor Degree, Grade required: 65% (2:2 equivalent) or 75% (2:1 equivalent)
+- **Bachelor Degree from Tripoli University (formerly Al Fateh University) and Benghazi University (formerly Garyounis)**: 58% (2:2 equivalent) or 70% (2:1 equivalent), Grade required: 65% (2:2 equivalent) or 75% (2:1 equivalent)
+- **Graduate Certificate**: Libyan University Bachelor Degree, Grade required: 55%; Bachelor Degree from Tripoli University (formerly Al Fateh University) and Benghazi University (formerly Garyounis), Grade required: 50%, Grade required: 55%
+
+### Malawi
+- **Undergraduate Programmes**: Cambridge Overseas Higher School Certificate, Grade required: As per course A Level requirements
+- **Bachelor Degree**: 60%, Grade required: As per course A Level requirements
+- **Postgraduate Programmes**: Masters from Mzuzu University and University of Malawi, Grade required: 60-69% (2:2 equivalent) or 70-74% (2:1 equivalent)
+- **Graduate Certificate**: Masters from Mzuzu University and University of Malawi, Grade required: 50%
+
+### Mauritius
+- **Undergraduate Programmes**: Cambridge Overseas Advanced Level Examination Ordinary / Higher Technician Diploma, Grade required: As per course A Level Requirements
+- **Postgraduate Programmes**: Bachelors Degree, Grade required: Class II Division II (50%) for courses requiring a UK 2:2 or Class II Division 1 (60%) for courses requiring a UK 2:1
+- **Graduate Certificate**: Bachelors Degree, Grade required: 40%
+
+### Morocco
+- **Undergraduate Programmes**: Diplôme du Baccalaureat, Grade required: 14/20
+- **Foundation Programme**: Standard entry per programme, Grade required: 14/20
+- **Advanced undergraduate**: Level 5 Certificat Universitaire d’Études Littéraires / Certificat Universitaire d’Études Scientifiques / Diplôme d’Études Universitaires de Technologie / Diplôme d’Études Universitaires Générales, Grade required: 12/20 in relevant subject
+- **Postgraduate programmes**: Bachelor Degree, Licence d’Études Fondamentales, Licence Professionnelle, Diplome d’Ecoles Nationales de Commerce de Gestion, Grade required: 2.7/4 or 12/20
+- **Maitrise**: Pass, Grade required: 2.7/4 or 12/20
+- **Graduate Certificate**: Bachelor Degree, Licence d’Études Fondamentales, Licence Professionnelle, Diplome d’Ecoles Nationales de Commerce de Gestion, Grade required: 10/20
+
+### Namibia
+- **Undergraduate Programmes**: Cambridge Overseas Higher School Certificate (COHSC) / GCE A level, Grade required: As per course A Level Requirements
+- **Undergraduate Programmes – advanced entry / Undergraduate Top-Up**: Bachelor Degree (post 2008), Grade required: Good 60-69%
+- **Postgraduate Programmes**: Masters degree, Grade required: Good / 60% (2:2 equivalent) or Very Good / 70% (2:1 equivalent)
+- **Graduate Certificate**: Masters degree, Grade required: 50%; Bachelor Degree (post 2008), Grade required: 50%
+
+### Nigeria
+- **Undergraduate Programmes**: National Diploma, Grade required: Lower credit or CGPA 2.5/4.0
+- **Part-completion of a Bachelor degree**: Lower second class or CGPA 2.4/5.0, Grade required: Lower credit or CGPA 2.5/4.0
+- **A recognised Nigerian Foundation Programme**: Average B grades, Grade required: Lower credit or CGPA 2.5/4.0
+- **Advanced Undergraduate / Undergraduate Top-Up**: Higher National Diploma from a Nigerian institution – for entry to year 2 / 3, Grade required: 2.5/4.0 GPA or Lower credit
+- **Postgraduate Programmes**: Bachelor degree from a government recognised University, Grade required: Lower second class or CGPA 2.4/5.0
+- **Postgraduate Diploma**: Lower second class or CGPA 2.4/5.0, Grade required: Lower second class or CGPA 2.4/5.0
+- **Graduate Certificate**: Bachelor degree from a government recognised University, Grade required: Third class or 1.50
+- **Post Higher HND**: 40%, Grade required: Third class or 1.50
+
+### Rwanda
+- **Undergraduate Programmes**: Certificate of Higher Education, Grade required: 80% / grande distinction
+- **Diploma in Higher Education**: 
+
+80% / grande distinction, Grade required: 80% / grande distinction
+- **Advanced Undergraduate / Undergraduate Top-Up**: Advanced Diploma in Higher Education, Grade required: 80% / grande distinction
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: 70% (distinction / mention très bien) (2:1 equivalent) or 60% (2:2 equivalent)
+- **Graduate Certificate**: Bachelor’s degree, Grade required: 50% (pass)
+
+### Sierra Leone
+- **Undergraduate Programmes**: West African Senior School Certificate Examination (WASSCE), Grade required: B3 in four subjects
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: 60% (2:1 equivalent) or 50% (2:2 equivalent)
+- **Graduate Certificate**: Bachelor’s degree, Grade required: 40% (pass)
+
+### South Africa
+- **Undergraduate Programmes**: National Senior Certificate, Grade required: –
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: 60% (2:1 equivalent) or 50% (2:2 equivalent)
+- **Graduate Certificate**: Bachelor’s degree, Grade required: 40% (pass)
+
+### Tanzania
+- **Undergraduate Programmes**: Advanced Certificate of Secondary Education (ACSE), Grade required: 2.5 overall minimum
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: Second class / 2.7/5.0 / 3.0/5.0 from UDSM (2:2 equivalent) or 3.3/5.0 from UDSM (2:1 equivalent)
+- **Graduate Certificate**: Bachelor’s degree, Grade required: Third class / 2.0/5.0 or 1.50
+
+### Uganda
+- **Undergraduate Programmes**: Uganda Advanced Certificate of Education (UACE), Grade required: 2 principal passes
+- **Advanced Undergraduate / Undergraduate Top-Up**: Higher Diploma, Grade required: 3.5/5.0
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: Lower second / 2:2 or 3.0/5.0 or Upper second / 2:1 or 4.0/5.0
+- **Graduate Certificate**: Bachelor’s degree, Grade required: 2.0/5.0 or 50%
+
+### Zambia
+- **Undergraduate Programmes**: Zambian School Certificate, Grade required: 5 subjects grade 6 or above
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: 50-59% / Merit (2:2 equivalent) or 60-69% / Credit (2:1 equivalent)
+- **Graduate Certificate**: Bachelor’s degree, Grade required: 50% or Pass
+
+### Zimbabwe
+- **Undergraduate Programmes**: Zimbabwe General Certificate of Education at Advanced Level, Grade required: –
+- **Postgraduate Programmes**: Bachelor’s degree, Grade required: 2:2 (60-69%) or 2:1 (70-79%)
+- **Graduate Certificate**: Bachelor’s degree, Grade required: Pass (40-49%)
+
+The table above provides the detailed entry requirements for each country and educational program, including the minimum grades or scores required.
+"""        
+    ],
+
+    [
+    """
+    Here are the detailed entry requirements for various educational programs across different countries in Asia:
+
+### Bangladesh
+- **Undergraduate Programmes**: Higher Secondary Certificate, Grade required: CGPA 4.8/5 or 78%
+- **3 year Polytechnic Diploma**: 65%, Grade required: CGPA 4.8/5 or 78%
+- **2 or 3 year Bachelor Degree**: CGPA 3.0/4 or 60%, Grade required: CGPA 4.8/5 or 78%
+- **Postgraduate programmes**: 3 or 4 year Bachelor Degree from any UGC recognised Public or Private University, Grade required:
+  - 2.5 GPA from a public University and 2.7 from a private university requiring a UK 2:2 equivalent (Courses Requiring 2:2)
+  - 2.7 GPA from a public University and 3.0 from a private university requiring a UK 2:1 equivalent (Courses Requiring 2:1)
+- **Graduate Certificate**: 3 or 4 year Bachelor Degree from any UGC recognised Public or Private University, Grade required: 2.0 GPA or 50% Equivalent
+
+### Bhutan
+- **Undergraduate Programmes**: Certificate Awarded by Royal Bhutan Polytechnic, Grade required: Min 60% depending on course
+- **Advanced Undergraduate Entry / Undergraduate Top-Up**: Bachelor degree, Grade required: 50%
+- **Postgraduate**: Applications will be considered on a case by case basis. Please contact Admissions, Grade required: 50%
+- **Graduate Certificate**: Applications will be considered on a case by case basis. Please contact Admissions, Grade required: 50%
+
+### Brunei
+- **Undergraduate Programmes**: Brunei/Cambridge Overseas Advanced Level Examination/Matriculation, Grade required: 3 A levels or equivalent (to meet the course required UCAS tariff points)
+- **Advanced Entry Undergraduate / Undergraduate Top-Up**: Qualifications from recognised institutions, Grade required: 60%
+- **Postgraduate Programmes**: An Honours Degree from a recognised institution, Grade required:
+  - Minimum of Second Class Honours / 2.5 – Lower division for courses requiring a UK 2:2 equivalent
+  - Minimum of Second Class Honours / 3.0 – Upper division for courses requiring a UK 2:1 equivalent
+- **Graduate Certificate**: An Honours Degree from a recognised institution, Grade required: Pass
+
+### China (People’s Republic of)
+- **Undergraduate Programmes**: Senior High School Certificate, Grade required: 80%
+- **Academy of Art and Design, Tsinghua University**: 65%, Grade required: 80%
+- **China Central Academy of the Arts (CAFA) – Design Courses only**: Two semesters full transcripts including H&C Assessment and Studio Assessment with average 70%, Grade required: 80%
+- **Beijing Institute of Fashion Technology (BIFT) – Design Courses only**: All modules with Pass + P in final major project, Grade required: 80%
+- **2nd or 3rd Year Entry (depending on course and subjects taken) / Undergraduate Top-Up**: 3 Year Diploma, Grade required: 70%
+- **211/985 University**: 70% average in undergraduate studies, Grade required: 70%
+- **Non 211/985 University**: 75% average in undergraduate studies, Grade required: 70%
+- **Postgraduate Programmes (for courses requiring a 2:2 equivalent)**: Bachelor Degree (4 Year), Grade required: 70%
+- **Graduate Certificate**: Bachelor Degree (4 Year), Grade required: 60%
+
+### Hong Kong
+- **Undergraduate Programmes**: HKDSE (Diploma of Secondary Education), Grade required: Tariff Points as per course grades
+- **Advanced Undergraduate / Undergraduate Top-Up**: Higher Diploma Associate Degrees, Grade required: CGPA 2.7
+- **Postgraduate Programmes**: Degree, Grade required: 2.5+
+- **Honours degree from Hong Kong Baptist College***: 2.5+, Grade required: 2.5+
+- **Graduate Certificate**: Bachelor, Grade required: Pass / 1.0
+
+### India
+- **Undergraduate Programmes**: Standard XII/Class XII from CBSE, CISC, Grade required: 65% and above
+- **Postgraduate**: Undergraduate Degree, Grade required:
+  - 55% (52% from Delhi/Mumbai/Pune Universities) for courses requiring a 2:2
+  - 65% (60% from Delhi/Mumbai/Pune Universities) for courses requiring a 2:1
+- **Masters degree**: 55%, Grade required:
+  - 55% (52% from Delhi/Mumbai/Pune Universities) for courses requiring a 2:2
+  - 65% (60% from Delhi/Mumbai/Pune Universities) for courses requiring a 2:1
+- **Graduate Certificate**: Undergraduate Degree(ordinary), Grade required: 45% and above
+
+### Indonesia
+- **Undergraduate Programmes**: STTB SMA (Award) and Ujian Nasional (Exam), Grade required: 7/10 and above
+- **Advanced Entry / Undergraduate Top-Up**: Diploma 3 (D3), Grade required: 2.5/4.0
+- **Postgraduate Programmes**: Bachelor Degree / Diploma IV (D4), Grade required:
+  - GPA 2.5/4 or 60% for courses requiring a UK 2:2 equivalent
+  - CGPA 3.0/4 or 70% for courses requiring a UK 2:1 equivalent
+- **Graduate Certificate**: Bachelor Degree / Diploma IV (D4), Grade required: GPA 2.0/4
+
+### Japan
+- **Undergraduate Programmes**: Upper Secondary Leaving Certificate and a recognised Foundation Programme, Grade required: 3/5 in USLC and relevant IFP grades inc IELTS
+- **Associate Degree**: 70% / Good / C, Grade required: 3/5 in USLC and relevant IFP grades inc IELTS
+- **Postgraduate Programmes**: Bachelor Degree 4 yrs from a recognised University, Grade required:
+  - 65% for courses requiring a UK 2:2 equivalent
+  - 70% for courses requiring a UK 2:1 equivalent
+- **Graduate Certificate**: Bachelor Degree 4 yrs, Grade required: 60%
+
+### Kazakhstan
+- **Undergraduate Programmes**: 1 year of degree-level study, Grade required: 60%
+- **Postgraduate Programmes**: Bakalavr (bachelor degree), Grade required: 4
+- **5 year University Diploma or New-style 4 year Degree**: Average of 3.9 for courses requiring a 2:2 equivalent Average of 4.3 for courses requiring a 2:1 equivalent, Grade required: 4
+- **Graduate Certificate**: Bakalavr (bachelor degree), Grade required: 3
+
+### Macau
+- **Undergraduate Programmes**: Ensino Secundário Complementar, Grade required: 2.3/4
+- **Cambridge Overseas Higher School Certificate (COHSC)**: As per course A Level requirements, Grade required: 2.3/4
+- **Postgraduate Programmes**: Bachelor Degree or Licenciatura, Grade required:
+  - 2.5/4.0 for courses requiring a 2:2, 3.0/4.0 for courses requiring a 2:1
+- **Graduate Certificate**: Bachelor Degree or Licenciatura, Grade required: 2
+
+### Malaysia
+- **Undergraduate Programmes**: Malaysian University recognised Foundation Year, Grade required: 2.5 GPA
+- **STPM Malaysia Higher School Certificate**: 3 Principals excluding General Paper and Malay Studies – Grades will depend on course applied for, Grade required: 2.5 GPA
+- **International Baccalaureate Diploma**: see UK/Generic, Grade required: 2.5 GPA
+- **Malaysian University Matriculation Programme**: Minimum CGPA 3.00 average or equivalent, Grade required: 2.5 GPA
+- **Canadian Pre University Foundation**: Minimum pass 75%, Grade required: 2.5 GPA
+- **South Australian Matriculation**: Minimum ATAR 85%, Grade required: 2.5 GPA
+- **UEC Unified Examination Certificate (Senior Middle Level)**: 75% (B3 grades) excluding Malay and Chinese languages, Grade required: 2.5 GPA
+- **Postgraduate Programmes**: An Honours degree from a recognised institution, Grade required: Minimum of Second Class Honours (Second Division) in relevant field
+- **Graduate Certificate**: An Honours degree from a recognised institution, Grade required: Pass degree
+
+### Maldives
+- **Undergraduate Programmes**: UCLES Advanced Level Examination/Higher Secondary School Certificate/ Foundation Studies Level II, Grade required: As per course A Level Requirements
+- **Advanced Diploma**: Applications will be considered on a case by case basis. Please contact international admissions, Grade required: As per course A Level Requirements
+- **Postgraduate**: Bachelors degree from Maldives National University, Grade required: Equivalent overall grades to a UK 2:2 or 2:1 honours degree as appropriate
+- **Graduate Certificate**: Bachelors degree from Maldives National University, Grade required: Equivalent overall grades to a UK pass degree
+
+Here are the entry requirements for various countries to study in the UK based on the tables provided:
+
+### Myanmar
+- **Undergraduate Programmes:** Associate Degree/Diploma/Technical Institute Diploma, Overall Pass
+- **Postgraduate Programmes:** Postgraduate Diploma/Masters Degree, Overall Pass (60%) for UK 2:2 equivalent, 75% for UK 2:1 equivalent
+- **Graduate Certificate:** Postgraduate Diploma/Masters Degree, Pass – 50%
+
+### Nepal
+- **Undergraduate Programmes:** A levels taken in Nepal, As per course A Level Requirements
+- **Advanced Undergraduate/Undergraduate Top-Up:** Bachelor Degree 3 years study (entry to 2nd year), 65%
+- **Postgraduate Programmes:** Bachelor degree 3 years, 55%
+- **Graduate Certificate:** Bachelor degree 3 years, 50%
+
+### Pakistan
+- **Undergraduate Programmes:** Senior High School Certificate, 75%
+- **Bachelor Degree (2-3 years):** 55% / 2.5 / CB, 75%
+- **Advanced Entry/Undergraduate Top-Up:** Bachelor Degree (3-4 years), 54.5% / 2.5 / CB
+- **Postgraduate Programmes:** 4 year Bachelor degree or 3 year Honours, 54.5% / 2.5 / CB for UK 2:2 equivalent, 64.5% / 3.5 / BA for UK 2:1 equivalent
+- **Masters Degree:** 49.5% / 2.0 / CC, 54.5% / 2.5 / CB for UK 2:2 equivalent, 64.5% / 3.5 / BA for UK 2:1 equivalent
+- **Graduate Certificate:** 4 year Bachelor degree or 3 year Honours, 44.5% / 1.5 / DC
+- **Masters Degree:** 39.5% / 1.0 / DD, 44.5% / 1.5 / DC
+
+### Philippines
+- **Undergraduate Programmes:** Completion of two years of a Bachelor Degree, 75%
+- **Postgraduate Programmes:** Bachelors Degree (4 Year) from specified institutions, 75% for UK 2:2, 80% for UK 2:1
+- **Masters Degree (other institutions):** 75% for UK 2:2, 80% for UK 2:1
+- **Masters Degree (specified institutions):** 65% for UK 2:2, 70% for UK 2:1
+- **Graduate Certificate:** Bachelors Degree (4 Year) from specified institutions, 60%
+- **Masters Degree (other institutions):** 60%
+- **Masters Degree (specified institutions):** 50%
+
+### Singapore
+- **Postgraduate:** Bachelor Degree, 60% / 2nd Lower / CAP 3.5 for UK 2:2, 70% / upper 2nd class / CAP 4.0 for UK 2:1
+- **Graduate Certificate:** Bachelor Degree, 50% / Third / 3.0 CAP
+
+### South Korea
+- **Undergraduate Programmes:** Junior College Diploma/Associate Degree, C+ / 2.5 / 75-79%
+- **Postgraduate Programmes:** Bachelor Degree (HAKSA), C+ / 2.5 / 75-79% for UK 2:2, B / 3.0 / 80-89% for UK 2:1
+- **Graduate Certificate:** Bachelors degree, C / 2.0 / 70+%
+
+### Sri Lanka
+- **Undergraduate Programmes:** National Certificate, 65% / B / Very Good Pass
+- **Postgraduate Programmes:** Bachelor General Degree, B+ / 3.3 / Second Upper
+- **Bachelor Special Degree/Professional Degree:** B / 3.0 / Second Lower for UK 2:2, B+ / 3.3 / Second Upper for UK 2:1
+- **Graduate Certificate:** Bachelor General Degree, C+ / 2.3 / Pass
+- **Bachelor Special Degree/Professional Degree:** C / 2.0 / Pass
+
+### Taiwan
+- **Undergraduate Programmes:** Associate degree/Junior College Diploma, 60-69% / Pass / 2.0
+- **Postgraduate Programmes (4 year Bachelors Degree):** Minimum 70%/CGPA 3.0 for UK 2:2, 80%/CGPA 4.0 for UK 2:1
+- **Postgraduate Programmes (3 year Bachelors Degree):** Minimum 75%/CGPA 3.0 for UK 2:2, 85%/CGPA 4.0 for UK 2:1
+- **Masters degree:** Minimum 70%
+- **Graduate Certificate:** Bachelors degree, 60%
+
+### Thailand
+- **Undergraduate Programmes (Mathayom 6):** GPA 3.0 from top schools
+- **Advanced Diploma/Associate Degree:** GPA 2.5
+- **Postgraduate Programmes:** Bachelor Degree, 2.5 GPA for UK 2:2, 3.0 GPA for UK 2:1
+- **Graduate Certificate:** Bachelor Degree, 2.0 GPA
+
+### Vietnam
+- **Undergraduate Programmes:** Upper Secondary School Graduation Diploma, Completion of Yr 12 with 8.0 or 80%
+- **Postgraduate Programmes:** University Degree, 6/10 (or 60%) for UK 2:2, 7/10 (or 70%) for UK 2:1
+- **Graduate Certificate:** University Degree, 5/10 (or 50%)
+
+These tables outline the academic requirements for different levels of study in the UK from various countries, providing a clear overview of the grades needed for admission.
+
+
+"""
+],
+    
+    
+    [
+"""
+Here are the entry requirements for Australia and New Zealand for studying in the UK based on the provided tables:
+
+### Australia
+- **Undergraduate Programmes:** Good grades in Year 12 examinations and proof of entitlement to enter the Australian University system.
+  - **Grade required:** Minimum 85 ATAR / Minimum 7 OP (Queensland)
+
+- **Postgraduate Programmes (3 year Bachelor Degree from a G8 University):**
+  - **Grade required:** 70% or 2/4 GPA for courses requiring a UK 2:2
+  - **Grade required:** 80% or 3/4 GPA for courses requiring a UK 2:1 equivalent
+
+- **Postgraduate Programmes (3 year Bachelor Degree from RMIT):**
+  - **Grade required:** 70% or 2/4 GPA for courses requiring a UK 2:2
+  - **Grade required:** 80% or 3/4 GPA for courses requiring a UK 2:1 equivalent
+
+- **4-year Honours Degree:**
+  - **Grade required:** 2.1 / 70%
+
+- **Graduate Certificate (3 year Bachelor Degree from a G8 University):**
+  - **Grade required:** 50% or above
+
+- **Graduate Certificate (3 year Bachelor Degree from RMIT):**
+  - **Grade required:** 1.5/4 GPA
+
+- **4-year Honours Degree:**
+  - **Grade required:** 3rd/ 50%
+
+### New Zealand
+- **Undergraduate Programmes:** University Entrance Certificate with National Certificate in Educational Achievement Level 3
+  - **Grade required:** Excellent and Merit in subjects relevant to course
+
+- **Postgraduate Programmes (Bachelors degree with honours):**
+  - **Grade required:** B- or C+ for UK 2:2 equivalent
+  - **Grade required:** B or B+ for UK 2:1 equivalent
+
+- **Graduate Certificate (Bachelors degree with honours):**
+  - **Grade required:** C- to C
+
+These tables summarize the academic requirements from Australia and New Zealand for various levels of study in the UK, providing clarity on the grades necessary for admission.
+
+"""
+
+    ],
+
+
+    
+    [
+"""
+Here are the entry requirements for Jamaica for studying in the UK based on the provided table:
+
+### Jamaica
+- **Undergraduate Programmes:** University of West Indies CAPE (Caribbean Advanced Proficiency Examination)
+  - **Grade required:** As per A Level requirements
+
+- **Associate Degree:**
+  - **Grade required:** III / 3.0
+  - **Grade required:** As per A Level requirements
+
+- **Postgraduate:**
+  - **Grade required:** Bachelor degree from University of West Indies or recognised university
+  - **Grade required for UK 2:2 equivalent:** Class II lower division (Jamaican degree classification)
+  - **Grade required for UK 2:1 equivalent:** Class II upper division (Jamaican degree classification)
+
+- **Graduate Certificate:**
+  - **Grade required:** Bachelor degree from University of West Indies or accredited by University Council of Jamaica
+  - **Grade required:** Pass degree
+
+These requirements outline the necessary qualifications and grades needed from Jamaican educational institutions for different levels of study in the UK.
+
+"""
+    ],
+
+
+
+
+    [
+"""
+Here are the entry requirements for studying in the UK from Belarus, Norway, Russia, Turkey, Ukraine, and the UK itself based on the provided tables:
+
+### Belarus
+- **Undergraduate Programmes:**
+  - **You will need:** 1-2 years Higher Education study at an approved University
+  - **Grade required:** 3/5 or 6/10
+
+- **Diploma of Specialised Secondary Education:**
+  - **You will need:** 3/5 or 6/10
+  - **Grade required:** 3/5 or 6/10
+
+- **Postgraduate Programmes:**
+  - **You will need:** Specialist Diploma
+  - **Grade required for UK 2:2 equivalent:** 5 – 6.9
+  - **Grade required for UK 2:1 equivalent:** 7
+
+- **Graduate Certificate:**
+  - **You will need:** Specialist Diploma
+  - **Grade required:** 4.0/10 and above
+
+### Norway
+- **Undergraduate Programmes:**
+  - **You will need:** Vitnemal-videregaende opplaering
+  - **Grade required:** 3.7
+
+- **Postgraduate Programmes:**
+  - **You will need:** A Post 2003 Bachelor Degree OR pre 2003 Candidatus Magisterii
+  - **Grade required:** C/2.7
+
+- **Graduate Certificate:**
+  - **You will need:** A Post 2003 Bachelor Degree OR pre 2003 Candidatus Magisterii
+  - **Grade required:** D/3.3
+
+### Russia
+- **Undergraduate Programmes:**
+  - **You will need:** Certificate of Secondary Education and an acceptable grade from a recognised Foundation programme.
+  - **Grade required:** Average of 4 in Certificate of Secondary Education and all Bs in Foundation Programme
+
+- **First year of Bachelor degree/Bakalvr:**
+  - **You will need:** minimum GPA 3/Satisfactory
+  - **Grade required:** Average of 4 in Certificate of Secondary Education and all Bs in Foundation Programme
+
+- **Postgraduate Programmes:**
+  - **You will need:** 5 year University Diploma or New-style 4 year Bachelor Degree
+  - **Grade required for UK 2:2 equivalent:** Average of 3.8
+  - **Grade required for UK 2:1 equivalent:** Average of 4.2
+
+- **Graduate Certificate:**
+  - **You will need:** Bachelor Degree
+  - **Grade required:** 3 / Satisfactory or above
+
+### Turkey
+- **Undergraduate Programmes:**
+  - **You will need:** Devlet Lise Diplomasi/Lise Bitirme Diplomasi
+  - **Grade required:** Minimum CGPA 3.5/5 from selected schools
+
+- **Completion of the first year of Lisans Diplomasi:**
+  - **You will need:** Minimum CGPA 3.5/5 from selected schools
+  - **Grade required:** Minimum CGPA 3.5/5 from selected schools
+
+- **Ön-Lisans Diplomasi (Associate degree):**
+  - **You will need:** GPA 2.5
+  - **Grade required:** Minimum CGPA 3.5/5 from selected schools
+
+- **Postgraduate Programmes:**
+  - **You will need:** Lisans Diplomasi
+  - **Grade required for UK 2:2 equivalent:** Minimum CGPA 2.5/4
+  - **Grade required for UK 2:1 equivalent:** Minimum CGPA 2.8/4
+
+- **Graduate Certificate:**
+  - **You will need:** Lisans Diplomasi
+  - **Grade required:** Minimum CGPA 2.0/4
+
+### Ukraine
+- **Undergraduate Programmes:**
+  - **You will need:** Junior Specialist Diploma
+  - **Grade required:** 4.0/5 or 7/12
+
+- **Postgraduate Programmes:**
+  - **You will need:** Bachelor Degree with Honours (obtained post 2007)
+  - **Grade required for UK 2:2 equivalent:** 4.0/5 or 7/12
+  - **Grade required for UK 2:1 equivalent:** 4.5/5 or 9/12
+
+- **Graduate Certificate:**
+  - **You will need:** Bachelor Degree
+  - **Grade required:** 3/5 or 4/12
+
+### UK
+- **Undergraduate Programmes:**
+  - **You will need:** Northumbria University IFP grades
+  - **Grade required:** See specific Pathway Courses page
+
+- **Advanced Undergraduate / Undergraduate Top-Up:**
+  - **You will need:** Approved UK University Foundation Programmes
+  - **Grade required:** Typically 55% (specific requirements vary by course)
+
+- **SQA HND:**
+  - **You will need:** Min ABB
+  - **Grade required:** Typically 55% (specific requirements vary by course)
+
+- **Postgraduate:**
+  - **You will need:** INTO Graduate Diploma
+  - **Grade required for UK 2:2 equivalent:** 60%
+  - **Grade required for UK 2:1 equivalent:** 70%
+
+- **Northumbria Graduate Cert:**
+  - **Grade required:** 50%
+
+- **UK Bachelor Degree (Honours):**
+  - **Grade required for UK 2:2 courses:** 50%
+  - **Grade required for UK 2:1 courses:** 60%
+
+These requirements outline the necessary qualifications and grades needed from various countries for different levels of study in the UK.
+
+"""
+
+    ],
+
+
+
+    [
+    """
+    Here are the entry requirements for studying in the UK from Brazil, Colombia, El Salvador, Mexico, Peru, and Venezuela based on the provided tables:
+
+### Brazil
+- **Undergraduate Programmes:**
+  - **You will need:** One year University course in Brazil
+  - **Grade required:** 60%
+
+- **First year of Bacharel/Licenciado/Licenciatura / Bachelors Degree:**
+  - **You will need:** GPA of 7.5
+  - **Grade required:** 60%
+
+- **3rd Year Undergraduate / Undergraduate Top-Up:**
+  - **You will need:** 2/3 years of Bacharel/Licenciado/Licenciatura / Bachelors Degree
+  - **Grade required:** GPA of 7.5 and at least 90 credits completed – 30 credits would need to be relevant to the subject.
+
+- **Postgraduate:**
+  - **You will need:** Bacharel/Licenciado/Licenciatura / Bachelors Degree (when awarded by a regionally accredited institution)
+  - **Grade required for UK 2:2 equivalent:** GPA of 6.5
+  - **Grade required for UK 2:1 equivalent:** GPA of 7.5 or above
+
+- **Graduate Certificate:**
+  - **You will need:** Bacharel/Licenciado/Licenciatura / Bachelors Degree (when awarded by a regionally accredited institution)
+  - **Grade required:** Pass (GPA of 5 or above)
+
+### Colombia
+- **Undergraduate Programmes:**
+  - **You will need:** Técnico Profesional
+  - **Grade required:** 3.5 / 5
+
+- **Advanced Undergraduate / Undergraduate Top-Up:**
+  - **You will need:** Tecnólogo en [subject area] / Título de [subject area] a nivel tecnológico
+  - **Grade required:** 3.5 / 5
+
+- **Tecnólogo Especializado en [subject area]:**
+  - **You will need:** 3 / 5
+  - **Grade required:** 3.5 / 5
+
+- **Postgraduate Programmes:**
+  - **You will need:** Licenciado / Título de [subject area]
+  - **Grade required for UK 2:2 equivalent:** 3 / 5
+  - **Grade required for UK 2:1 equivalent:** 3.5 / 5
+
+- **Maestro en [arts subject area]:**
+  - **Grade required for UK 2:2 equivalent:** 3 / 5
+  - **Grade required for UK 2:1 equivalent:** 3.5 / 5
+
+- **Graduate Certificate:**
+  - **You will need:** Licenciado / Título de [subject area]
+  - **Grade required:** 3 / 5 or Sufficient
+
+- **Maestría en [arts subject area]:**
+  - **Grade required:** 3 / 5 or Sufficient
+
+### El Salvador
+- **Undergraduate Programmes:**
+  - **You will need:** Técnico / Perito / Auxiliar
+  - **Grade required:** 7/10
+
+- **Advanced Undergraduate:**
+  - **You will need:** Diplomado
+  - **Grade required:** 6/10
+
+- **Técnico Superior:**
+  - **You will need:** 6/10
+  - **Grade required:** 6/10
+
+- **Postgraduate Programmes:**
+  - **You will need:** Licenciado / Título de [subject area]
+  - **Grade required for UK 2:2 equivalent:** 7/10
+  - **Grade required for UK 2:1 equivalent:** 8/10
+
+- **Maestría:**
+  - **Grade required for UK 2:2 equivalent:** 6/10
+  - **Grade required for UK 2:1 equivalent:** 7/10
+
+- **Graduate Certificate:**
+  - **You will need:** Licenciado / Título de [subject area]
+  - **Grade required:** 6/10
+
+- **Maestría:**
+  - **Grade required:** 5/10
+
+### Mexico
+- **Undergraduate Programmes:**
+  - **You will need:** Salida Lateral or Carrera Corta leading to a Diploma or Título Técnico (after 2-3 years study)
+  - **Grade required:** 7.5 / 75%
+
+- **Postgraduate:**
+  - **You will need:** Licenciatura
+  - **Grade required for UK 2:2 equivalent:** 7.5 or 75%
+  - **Grade required for UK 2:1 equivalent:** 8.0 or 80%
+
+- **Graduate Certificate:**
+  - **You will need:** Licenciatura
+  - **Grade required:** 6 or 60%
+
+### Peru
+- **Advanced Undergraduate / Undergraduate Top-Up:**
+  - **You will need:** Título de Profesional
+  - **Grade required:** Overall Score of 14
+
+- **Postgraduate Programmes:**
+  - **You will need:** Título de Licenciado / Título (Profesional) de [subject area] / Grado Académico de Bachiller
+  - **Grade required for UK 2:2 equivalent:** Overall Score of 12
+  - **Grade required for UK 2:1 equivalent:** Overall Score of 13
+
+- **Graduate Certificate:**
+  - **You will need:** Título de Licenciado / Título (Profesional) de [subject area] / Grado Académico de Bachiller
+  - **Grade required:** Overall Score of 11 (Pass)
+
+### Venezuela
+- **Undergraduate Programmes:**
+  - **You will need:** Applicants who have successfully completed the first year of a Venezuelan University degree (Licenciado) will be considered for admission to the first year of our Bachelor degree courses
+  - **Grade required:** Minimum 61% or 11 depending on course applied for
+
+- **Postgraduate Programmes:**
+  - **You will need:** Licenciatura / Título de (subject area)
+  - **Grade required for UK 2:2 equivalent:** Minimum 61% / 11
+  - **Grade required for UK 2:1 equivalent:** Minimum 71% / 14
+
+- **Graduate Certificate:**
+  - **You will need:** Licenciatura / Título de (subject area)
+  - **Grade required:** 50%
+
+These requirements outline the necessary qualifications and grades needed from various countries for different levels of study in the UK.
+    """
+    
+    ],
+
+
+
+    [
+    """
+
+    Here are the academic entry requirements for various countries in the Middle East, formatted for easy reading:
+
+### Bahrain
+- **Undergraduate Programmes**
+  - **Requirement:** Associate Degree
+  - **Grade required:** GPA 2.75
+
+- **Entry after year 1 of Bahraini degree**
+  - **Requirement:** GPA 2.75 and having completed around 30 credit hours
+  - **Grade required:** GPA 2.75
+
+- **Bahrain Diploma – when studied for 2-3 years**
+  - **Requirement:** GPA 2.75
+  - **Grade required:** GPA 2.75
+
+- **Advanced Entry / Undergraduate Top-Up**
+  - **Requirement:** Advanced entry to year 2 from Bachelors degree – entry after year 2 of Bahraini degree
+  - **Grade required:** GPA 2.75 and having completed around 60 credit hours
+
+- **Advanced entry to year 3 from Bachelors degree – entry after year 3 of Bahraini degree**
+  - **Requirement:** GPA 2.75 and having completed around 90 credit hours
+  - **Grade required:** GPA 2.75 and having completed around 60 credit hours
+
+- **Postgraduate Programmes**
+  - **Requirement:** Bachelor Degree (4 Years)
+  - **Grade required:** GPA of around 2.75/4.0 for courses requiring a UK 2:2 equivalent CGPA 3.2/4 or 4.0/5 for courses requiring a 2:1 equivalent
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelor Degree (4 Years)
+  - **Grade required:** GPA of 2.0/4.0
+
+### Iran
+- **Undergraduate Programmes**
+  - **Requirement:** 3 year High School Diploma (Nazari or Fani Herfei) plus one year pre-university programme (Peeshdaneshgahe)
+  - **Grade required:** Minimum mark of 14/20
+
+- **Postgraduate Programmes**
+  - **Requirement:** Bachelor Degree (4 Years) Licence or Karshenasi
+  - **Grade required:** Average mark of 13/20 for courses requiring a UK 2:2 equivalent Average mark of 15/20 for courses requiring a UK 2:1 equivalent
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelor Degree (4 Years) Licence or Karshenasi
+  - **Grade required:** Average mark of 10/20
+
+### Iraq
+- **Undergraduate Programmes**
+  - **Requirement:** Bachelor Degree
+  - **Grade required:** 60% for courses requiring a UK 2:2 equivalent 70% for courses requiring a UK 2:1 equivalent
+
+- **Postgraduate Programmes**
+  - **Requirement:** 4 year Bachelors / Higher Diploma of Technology
+  - **Grade required:** 60% for courses requiring a UK 2:2 equivalent 70% for courses requiring a UK 2:1 equivalent
+
+- **Graduate Certificate**
+  - **Requirement:** 4 year Bachelors
+  - **Grade required:** 50%
+
+### Jordan
+- **Undergraduate Programmes**
+  - **Requirement:** Community College Diploma / Intermediate Diploma / Associate degree
+  - **Grade required:** GPA 2.5 / 4
+
+- **Postgraduate Programmes**
+  - **Requirement:** Bachelor Degree
+  - **Grade required:** GPA 2.5 / 4 for courses requiring a 2:2 3.0 / 4 for courses requiring a 2:1
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelor Degree
+  - **Grade required:** GPA 2.0 / 4
+
+### Kuwait
+- **Undergraduate Programmes**
+  - **Requirement:** Technical Diploma / Certificate from PAEET College
+  - **Grade required:** GPA 2.75 or over
+
+- **Advanced entry from Bachelors degree – entry after year 1 of Kuwaiti degree**
+  - **Requirement:** GPA 2.75, and having completed around 30 credit hours
+  - **Grade required:** GPA 2.75 or over
+
+- **Advanced Undergraduate / Undergraduate Top-Up**
+  - **Requirement:** Entry to year 2 from Bachelors degree – entry after year 2 of Kuwaiti degree
+  - **Grade required:** GPA 2.75, and having completed around 60 credit hours
+
+- **Entry to year 3 from Bachelors degree – entry after year 3 of Kuwaiti degree**
+  - **Requirement:** GPA 2.75, and having completed around 90 credit hours
+  - **Grade required:** GPA 2.75, and having completed around 60 credit hours
+
+- **Postgraduate Programmes**
+  - **Requirement:** Bachelor Degree(4 years)
+  - **Grade required:** GPA 2.75 for courses which require a UK 2:2 equivalent CGPA 3.2/4 or 4.0/5 for courses which require a 2:1 equivalent
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelor Degree(4 years)
+  - **Grade required:** GPA 2.0
+
+### Lebanon
+- **Undergraduate Programmes**
+  - **Requirement:** Diplôme de Technicien Supérieur
+  - **Grade required:** Average mark of 15
+
+- **Diploma of Technical Licence / Licence Technique**
+  - **Requirement:** Average mark of 14
+  - **Grade required:** Average mark of 15
+
+- **Diplôme Universitaire de Technologie**
+  - **Requirement:** Average mark of 15
+  - **Grade required:** Average mark of 15
+
+- **Final Year Top-Up / Undergraduate Top-Up**
+  - **Requirement:** Bachelor Degree (3 Years)
+  - **Grade required:** Average mark of 14
+
+- **Postgraduate Programmes**
+  - **Requirement:** Bachelor Degree (4 Years)
+  - **Grade required:** Average mark of 13 for courses which require a UK 2:2 equivalent Average mark of 15 for courses which require a UK 2:1 equivalent
+
+- **Bachelors Degree (4 Years) from the American University of Beirut or Beirut Arab University**
+  - **Requirement:** 75% or above for courses which require a 2:2 equivalent 85% or above for courses which require a 2:1 equivalent
+  - **Grade required:** Average mark of 13 for courses which require a UK 2:2 equivalent Average mark of 15 for courses which require a UK 2:1 equivalent
+
+- **Maîtrise**
+  - **Requirement:** Average mark of 13 for courses which require a UK 2:2 equivalent Average mark of 15 for courses which require a UK 2:1 equivalent
+  - **Grade required:** Average mark of 13 for courses which require a UK 2:2 equivalent Average mark of 15 for courses which require a UK 2:1 equivalent
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelor Degree (4 Years)
+  - **Grade required:** Average mark of 10
+
+- **Maîtrise**
+  - **Requirement:** Average mark of 10
+  - **Grade required:** Average mark of 10
+
+### Oman
+- **Undergraduate Programmes**
+  - **Requirement:** Technical Industrial College Diploma (OITC)
+  - **Grade required:** good
+
+- **Advanced entry from Bachelors degree – entry after year 1 of Omani degree**
+  - **Requirement:** GPA 2.75, and having completed around 30 credit hours
+  - **Grade required:** good
+
+- **Diploma (when studied between 2 and 3 years)**
+  - **Requirement:** C / 65-79%
+  - **Grade required:** good
+
+- **Advanced Undergraduate / Undergraduate Top-Up**
+  - **Requirement:** Advanced entry from Bachelors degree – entry after year 2 of Omani degree
+  - **Grade required:** GPA 2.75, and having completed around 60 credit hours
+
+- **Advanced entry from Bachelors degree – entry after year 3 of Omani degree**
+  - **Requirement:** GPA 2.75, and having completed around 90 credit hours
+  - **Grade required:** GPA 2.75, and having completed around 60 credit hours
+
+- **Postgraduate Programmes**
+  - **Requirement:** Bachelor Degree (4 Years)
+  - **Grade required:** CGPA 2.75
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelor Degree (4 Years)
+  - **Grade required:** Pass/CGPA 2.0
+
+### Palestine
+- **Undergraduate Programmes**
+  - **Requirement:** Community College Diploma
+  - **Grade required:** 60%/Satisfactory/D
+
+- **Postgraduate**
+  - **Requirement:** Bachelors Degree
+  - **Grade required:** Minimum 70%/Good/C for courses requiring a UK 2:2 Minimum 80%/Very Good/B for courses requiring a UK 2:1
+
+- **Graduate Certificate**
+  - **Requirement:** Bachelors Degree
+  - **Grade required:** 60%/Satisfactory/D
+
+Here are the admission requirements for Qatar, Saudi Arabia, and the United Arab Emirates summarized in a structured format:
+
+### Qatar
+- **Undergraduate Programme:**
+  - **Requirement:** Associate Degree
+  - **Grade Required:** C / 2.75 GPA
+  
+- **Advanced Entry after Year 1 of Qatari Degree:**
+  - **Requirement:** 2.75 GPA, and having completed around 30 credit hours
+  - **Grade Required:** C / 2.75 GPA
+  
+- **Advanced Undergraduate (Entry after Year 2 of Qatari Degree):**
+  - **Requirement:** 2.75 GPA, and having completed around 60 credit hours
+  - **Grade Required:** 2.75 GPA
+  
+- **Advanced Entry after Year 3 of Qatari Degree:**
+  - **Requirement:** 2.75 GPA, and having completed around 90 credit hours
+  - **Grade Required:** 2.75 GPA
+  
+- **Postgraduate Programmes:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** 2.75/4.0 GPA for courses requiring a UK 2:2 equivalent, CGPA 3.2/4 or 4.0/5 for courses requiring a UK 2:1 equivalent
+  
+- **Graduate Certificate:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** 2.00 GPA
+
+### Saudi Arabia
+- **Undergraduate Programmes:**
+  - **Requirement:** College of Technology Diploma, Higher Technology Diploma, Junior Health College Diploma
+  - **Grade Required:** GPA 2.75/4 or 3.5/5
+  
+- **Associate Degree:**
+  - **Requirement:** GPA 2.75/4 or 3.5/5
+  - **Grade Required:** GPA 2.75/4 or 3.5/5
+  
+- **Entry after Year 1 of Saudi Degree:**
+  - **Requirement:** Average of 60%, and having completed around 30 credit hours
+  - **Grade Required:** GPA 2.75/4 or 3.5/5
+  
+- **Advanced Undergraduate / Undergraduate Top-Up:**
+  - **Requirement:** Associate Degree (depending on course)
+  - **Grade Required:** GPA 2.75/4 or 3.5/5
+  
+- **Advanced Entry after Year 2 of Saudi Degree:**
+  - **Requirement:** Average of 60%, and having completed around 60 credit hours
+  - **Grade Required:** GPA 2.75/4 or 3.5/5
+  
+- **Advanced Entry after Year 3 of Saudi Degree:**
+  - **Requirement:** Average of 60%, and having completed around 90 credit hours
+  - **Grade Required:** GPA 2.75/4 or 3.5/5
+  
+- **Postgraduate Programmes:**
+  - **Requirement:** Bachelor Degree (4 years)
+  - **Grade Required:** GPA 2.75/4 or 3.5/5 for courses requiring a UK 2:2 equivalent, GPA 3.2/4 or 4/5 for courses requiring a UK 2:1 equivalent
+  
+- **Graduate Certificate:**
+  - **Requirement:** Bachelor Degree (4 years)
+  - **Grade Required:** 2.0/4 GPA or 2.5/5 GPA
+
+### United Arab Emirates
+- **Undergraduate Programmes:**
+  - **Requirement:** Higher College of Technology – Certificate
+  - **Grade Required:** GPA of 2.75 with around 50-60 credits per year
+  
+- **Advanced Entry after Year 1 of Emirati Degree:**
+  - **Requirement:** Average of 75%, and having completed around 30 credit hours
+  - **Grade Required:** GPA of 2.75 with around 50-60 credits per year
+  
+- **2nd Year Undergraduate / Undergraduate Top-Up:**
+  - **Requirement:** Higher College of Technology – Diploma
+  - **Grade Required:** GPA of 2.75 with around 50-60 credits per year
+  
+- **Associate Degree:**
+  - **Requirement:** 75% with around 50-60 credits per year
+  - **Grade Required:** GPA of 2.75 with around 50-60 credits per year
+  
+- **Advanced Entry after Year 2 of Emirati Degree:**
+  - **Requirement:** Average of 75%, and having completed around 60 credit hours
+  - **Grade Required:** GPA of 2.75 with around 50-60 credits per year
+  
+- **3rd Year Undergraduate / Undergraduate Top-Up:**
+  - **Requirement:** Advanced entry after Year 3 of Emirati Degree
+  - **Grade Required:** Average of 75%, and having completed around 90 credit hours
+  
+- **Postgraduate Programmes:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** CGPA 2.6-2.9/4 for courses requiring a UK 2:2 equivalent, CGPA 3.0/4 for courses requiring a UK 2:1 equivalent
+  
+- **Graduate Certificate:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** GPA 2.0
+
+These summaries provide a clear overview of the entry requirements for each level of education (undergraduate, postgraduate, and graduate certificate) across Qatar, Saudi Arabia, and the United Arab Emirates.
+
+    """
+    
+    ],
+
+
+
+    [
+    """
+    Here are the admission requirements for Canada, Puerto Rico, and the USA summarized in a structured format:
+
+### Canada
+- **Undergraduate Programmes:**
+  - **Requirement:** Canadian High School/Secondary School Diploma
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Alberta:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **British Columbia:**
+  - **Requirement:** 5 B grades in acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Manitoba:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **New Brunswick:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Newfoundland:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **North West Territories:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Nova Scotia:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Ontario:**
+  - **Requirement:** 70% Advanced level with six grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Prince Edward Island:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Quebec (Diplome d’Etudes Collegiales (DEC)):**
+  - **Requirement:** Pass
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Saskatchewan:**
+  - **Requirement:** 70% in five acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Yukon Territory:**
+  - **Requirement:** 5 B grades in acceptable grade 12 courses
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Postgraduate Programmes:**
+  - **Requirement:** Bachelor Degree (Honours)
+  - **Grade Required:** B / 3.0 GPA / 73% for courses requiring a UK 2:2 equivalent, B+ / GPA 3.3 / 77% for courses requiring a UK 2:1 equivalent
+  
+- **Graduate Certificate:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** 2.0 – 2.9 GPA
+
+### Puerto Rico
+- **Undergraduate Programmes:**
+  - **Requirement:** Associate Degree
+  - **Grade Required:** GPA 2 or 70% (Satisfactorio / Suficiente)
+  
+- **Postgraduate:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** GPA 2.5 (Satisfactorio / Suficiente) for courses requiring a UK 2:2 equivalent, GPA 3.0 (Bueno / Notable) for courses requiring a UK 2:1 equivalent
+  
+- **Graduate Certificate:**
+  - **Requirement:** Bachelor Degree
+  - **Grade Required:** GPA 2.0 (Satisfactorio / Suficiente)
+
+### USA
+- **Undergraduate Programmes:**
+  - **Requirement:** High School Graduation Diploma
+  - **Grade Required:** Due to COVID-19 restrictions:
+    - Minimum GPA of 3.0/4.0 plus one of the following:
+      - SAT I: Overall score of 1240 including minimum scores in each component (Reading and writing 630+, Math 610+)
+      - Minimum ACT score of 26
+      - Advanced Placement Tests: Grade 3 or above in at least two tests
+      - SAT subject tests: 550+ in minimum of two tests
+    - Or CGPA 3.2 out of 4.0 unweighted scale* Courses with subject specific requirements
+  
+- **Advanced Undergraduate / Undergraduate Top-Up:**
+  - **Requirement:** First year of Bachelors Degree completed
+  - **Grade Required:** GPA of 2.8
+  
+- **Two years of Bachelors Degree completed:**
+  - **Requirement:** GPA of 2.8 and at least 60 credits completed – 20 credits would need to be relevant to the subject.
+  - **Grade Required:** GPA of 2.8
+  
+- **Three years of Bachelors Degree completed:**
+  - **Requirement:** GPA of 2.8 and at least 90 credits completed – 30 credits would need to be relevant to the subject.
+  - **Grade Required:** GPA of 2.8
+  
+- **Postgraduate Programmes:**
+  - **Requirement:** Bachelors Degree (when awarded by a regionally accredited institution)
+  - **Grade Required:** GPA of 2.8 or above for courses requiring a UK 2:2 equivalent, GPA of 3.3 or above for courses requiring a UK 2:1 equivalent
+  
+- **Graduate Certificate:**
+  - **Requirement:** Bachelors Degree (when awarded by a regionally accredited institution)
+  - **Grade Required:** GPA of 2.0 or above
+
+These summaries provide a clear overview of the entry requirements for each level of education (undergraduate, postgraduate, and graduate certificate) across Canada, Puerto Rico, and the USA.
+    """
+    ],
+
+
+    [
+    """
+    Here are the summarized entry requirements for the unspecified country, covering undergraduate, postgraduate, and graduate certificate programs:
+
+### Non-specific Country
+
+- **Undergraduate Programmes:**
+  - **Requirement:** 120 UCAS Tariff points
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **GCSE Maths and English Language:**
+  - **Requirement:** At minimum grade 4/C, or an equivalent
+  - **Grade Required:** (Specific requirements not provided)
+  
+- **Advanced Undergraduate / Undergraduate Top-Up:**
+  - **Requirement:** Edexcel / BTEC HNDs
+  - **Grade Required:** IELTS 6.5 for entry to Newcastle Business School or School of Arts and Social Sciences Media Programmes, IELTS 6.0 for Computing, Engineering and Information Sciences Programmes
+  
+- **SQA HND:**
+  - **Requirement:** Min ABB
+  - **Grade Required:** IELTS 6.5 for entry to Newcastle Business School or School of Arts and Social Sciences Media Programmes, IELTS 6.0 for Computing, Engineering and Information Sciences Programmes
+  
+- **Postgraduate:**
+  - **Requirement:** INTO Graduate Diploma
+  - **Grade Required:** 60% for courses requiring a 2:2, 70% for courses requiring a 2:1
+  
+- **Northumbria Graduate Cert:**
+  - **Requirement:** 50%
+  - **Grade Required:** 60% for courses requiring a 2:2, 70% for courses requiring a 2:1
+  
+- **UK Bachelor Degree (Honours):**
+  - **Requirement:** 50% for courses requiring a 2:2, 60% for courses requiring a 2:1
+  - **Grade Required:** 60% for courses requiring a 2:2, 70% for courses requiring a 2:1
+
+These requirements outline the necessary qualifications and grades needed for entry into undergraduate, postgraduate, and graduate certificate programs in the non-specific country context.
+    """
+    ]
+
+]
