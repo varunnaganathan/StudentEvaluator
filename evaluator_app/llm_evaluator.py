@@ -1,3 +1,4 @@
+import ast
 from typing import List
 from agents.utils import run_multithreaded_handler
 from handlers.uni_handlers.base import get_uni_handler
@@ -20,11 +21,11 @@ def get_requirements_countries(university_name="northumbria") -> List[University
     path = os.path.join(university_data_dir, university_name, "countries.json")
     if os.path.exists(path):
         return UniversityCountry.objects.filter(university__name=university_name)
-    university = get_university(university_name)
+    university = add_or_get_university(university_name)
     uni_handler = get_uni_handler(university_name)()
     countries: dict = uni_handler.get_countries()
     return [
-        get_university_country(university, country_name, requirements)
+        add_or_get_university_country(university, country_name, requirements)
         for country_name, requirements in countries.items()
     ]
 
@@ -33,22 +34,72 @@ def get_requirements_courses(university_name="northumbria") -> List[UniversityCo
     path = os.path.join(university_data_dir, university_name, "courses.json")
     if os.path.exists(path):
         return UniversityCourse.objects.filter(university__name=university_name)
-    university = get_university(university_name)
+    university = add_or_get_university(university_name)
     uni_handler = get_uni_handler(university_name)()
     courses: dict = uni_handler.get_courses()
     return [
-        get_university_course(university, course_name, requirements)
+        add_or_get_university_course(university, course_name, requirements)
         for course_name, requirements in courses.items()
     ]
+
+
+def load_university_data_from_fs(uni_name):    
+    courses_fname = os.path.join(
+        university_data_dir, uni_name, "courses.json"
+    )
+    courses: dict = json.load(open(courses_fname))
+
+    countries_fname = os.path.join(
+        university_data_dir, uni_name, "countries.json"
+    )
+    countries: dict = json.load(open(countries_fname))
+
+    course_x_countries_fname = os.path.join(
+        university_data_dir, uni_name, "course_x_country_requirements.json"
+    )
+
+    countriesxcourses = json.load(open(course_x_countries_fname))
+
+    university = add_or_get_university(uni_name)
+
+
+    for course, requirements in courses.items():
+        add_or_get_university_course(
+            university=university, 
+            course_name=course, 
+            requirements=requirements
+        )
+    for country, requirements in countries.items():
+        add_or_get_university_country(
+            university=university, 
+            country_name=country, 
+            requirements=requirements
+        )
+
+    for country_name in countriesxcourses:
+        for course_name, requirements in countriesxcourses[country_name].items():
+            course = add_or_get_university_course(university, course_name)
+            country = add_or_get_university_country(university, country_name)
+            add_or_get_countryxcourse(
+                university=university, 
+                country=country, 
+                course=course, 
+                requirements=requirements[1]
+            )
 
 
 def extract_country_x_course_requirements(uni_name="northumbria"):
     # parse uni req
     # get all courses and countries
-    university = get_university(uni_name)
+    university = add_or_get_university(uni_name)
 
-    f_name = os.path.join(university_data_dir, uni_name, "course_x_country_requirements.json")
+    f_name = os.path.join(
+        university_data_dir, 
+        uni_name, 
+        "course_x_country_requirements.json"
+    )
     if os.path.exists(f_name):
+        load_university_data_from_fs(uni_name)
         print("University requirements already extracted. Skipping...")
         return 
     
@@ -102,7 +153,7 @@ def extract_country_x_course_requirements(uni_name="northumbria"):
 
         for country, country_response in country_responses.items():
             course, country = course_map[course], country_map[country]
-            get_course_country(
+            add_or_get_countryxcourse(
                 university=university,
                 course=course,
                 country=country,
@@ -119,47 +170,59 @@ def extract_country_x_course_requirements(uni_name="northumbria"):
 
 def add_university_requirements(application: Application) -> List[UniversityCourseXCountry]:
     extract_country_x_course_requirements(uni_name=application.university.name)
-    university_requirement = UniversityCourseXCountry.objects.filter(
-        university__name=application.university.name,
-        course__name=application.course.name,
-        country__name=application.country.name
+    print("University requirements extracted")
+
+    print(application.university.name, application.course.name, application.country.name)
+    course_country_req = UniversityCourseXCountry.objects.get(
+        university=application.university,
+        course=application.course,
+        country=application.country
     )
+    
+    if '```' in course_country_req.requirements:
+        course_country_req.requirements = course_country_req.requirements.split('```')[1]
 
-    if '```' in university_requirement:
-        university_requirement = university_requirement.split('```')[1]
-
-    application.university_requirements = university_requirement
+    application.university_requirements = course_country_req.requirements
     application.save()
 
-    return university_requirement
+    return course_country_req.requirements
 
 
 
 def summary_exists_in_dir(student_doc: StudentDocument):
-    student_docs_folder = os.path.join(student_data_dir, student_doc.student.student_id, student_output_docs_dir)
+    student_docs_folder = os.path.join(
+        student_data_dir, 
+        str(student_doc.student.student_id), 
+        student_output_docs_dir
+    )
     out_dir = os.path.join(student_docs_folder, summary_folder)
     os.makedirs(out_dir, exist_ok=True)
+
     summary_file = os.path.join(out_dir, student_doc.file_name)
     if os.path.exists(summary_file):
         student_doc.summary = open(summary_file).read()
         student_doc.save()
         return True
+    
     return False
 
 
-def get_unsummarised_student_docs_from_dir(student_id) -> List[StudentDocument]:
+def get_unsummarised_student_docs_from_dir(student: Student) -> List[StudentDocument]:
+
     unsummarized_docs = list()
-    student_docs_folder = os.path.join(student_data_dir, str(student_id), student_output_docs_dir)
+    student_docs_folder = os.path.join(student_data_dir, str(student.student_id), student_output_docs_dir)
     for f in os.listdir(student_docs_folder):
         if os.path.isfile(os.path.join(student_docs_folder, f)) and f.endswith(".txt"):
-            student_doc = StudentDocument.objects.filter(student__student_id=student_id, file_name=f)
-            if not student_doc:
+            try:
+                student_doc = StudentDocument.objects.get(student=student, file_name=f)
+            except StudentDocument.DoesNotExist:
                 student_doc = StudentDocument(
-                    student=get_student(student_id),
+                    student=student,
                     file_name=f,
-                    text=open(os.path.join(student_docs_folder, f)).read()
+                    text=open(os.path.join(student_docs_folder, f), encoding='utf-8').read()
                 )
                 student_doc.save()
+
             if not summary_exists_in_dir(student_doc):
                 unsummarized_docs.append(student_doc)
 
@@ -168,8 +231,7 @@ def get_unsummarised_student_docs_from_dir(student_id) -> List[StudentDocument]:
 
 def add_student_qualifications_data(application: Application):
     student_id = application.student.student_id
-    student = get_student(application.student.student_id)
-    unsummaraized_docs = get_unsummarised_student_docs_from_dir(student_id)   ### Change this to use the database instead of the file system
+    unsummarized_docs = get_unsummarised_student_docs_from_dir(application.student)   ### Change this to use the database instead of the file system
     student_docs_folder = os.path.join(student_data_dir, str(student_id), student_output_docs_dir)
     
     out_dir = os.path.join(student_docs_folder, summary_folder)
@@ -188,10 +250,10 @@ def add_student_qualifications_data(application: Application):
 
     file_summarization_prompts_dict = {
         doc.id: f"{summarization_prompt} {doc.text}"
-        for doc in unsummaraized_docs
+        for doc in unsummarized_docs
     }
     
-    doc_id_map = {doc.id: doc for doc in unsummaraized_docs}
+    doc_id_map = {doc.id: doc for doc in unsummarized_docs}
 
     if not len(file_summarization_prompts_dict):
         print("Student documents already summarized. Skipping...")
@@ -203,10 +265,10 @@ def add_student_qualifications_data(application: Application):
 
         for doc_id, response in file_contents_responses.items():
             doc = doc_id_map[doc_id]
-            update_student_document_summary(doc, response)
+            doc.summary = response
+            doc.save()
 
-
-    student_docs = StudentDocument.objects.filter(student=student)
+    student_docs = StudentDocument.objects.filter(student=application.student)
 
     student_data = f"\n{'-'*20}\n{'-'*20}\n".join([
         f"Doc ID: {doc.id}\n\n{doc.summary}"
@@ -217,7 +279,7 @@ def add_student_qualifications_data(application: Application):
     return student_data
 
 
-def process_student_qualifications(application: Application):
+def process_student_qualifications(application: Application, re_eval=False):
     def get_response():
         output_example = """
         {
@@ -255,16 +317,18 @@ def process_student_qualifications(application: Application):
 
         return student_value_pairs
 
+    if application.processed_qualifications and not re_eval:
+        print("Student qualifications already processed. Skipping...")
+        return 
+
     processed_data = None
     while not processed_data or '```' not in processed_data:
         processed_data = get_response()
     
-    processed_data = json.loads(processed_data.split("```")[1])       
+    processed_data = ast.literal_eval(processed_data.split("```")[1])       
 
     application.processed_qualifications = processed_data
     application.save()
-
-    return processed_data
 
 
 def create_student_application(
@@ -273,9 +337,10 @@ def create_student_application(
         course_name,
         country_name,
     ):
-    university = get_university(university_name)
-    course = get_university_course(university, course_name)
-    country = get_university_country(university, country_name)
+    print(f"Creating application for student {student_id} at {university_name} for course {course_name} in {country_name}")
+    university = add_or_get_university(university_name)
+    course = add_or_get_university_course(university, course_name)
+    country = add_or_get_university_country(university, country_name)
     student = get_student(student_id)
     application = add_or_get_student_application(
         student=student,
@@ -284,18 +349,20 @@ def create_student_application(
         country=country
     )
 
+    print("Application Created")
+
     return application
 
 
-def get_processed_student_data(application: Application):
+def get_processed_student_data(application: Application, re_eval=False):
     add_university_requirements(application)
     add_student_qualifications_data(application)
-    process_student_qualifications(application)
+    process_student_qualifications(application, re_eval)
     
     return application.processed_qualifications
 
 
-def add_student_qualifications_decisions(application: Application):
+def add_student_qualifications_decisions(application: Application, re_eval=False):
     def get_response():
         output_example = """
         {
@@ -330,20 +397,39 @@ def add_student_qualifications_decisions(application: Application):
 
         return student_decision_pairs
     
+
+    if application.decision_data and not re_eval:
+        print("Student decision pairs already extracted. Skipping...")
+        return
+
     decision_pairs = None
     while not decision_pairs or '```' not in decision_pairs:
         decision_pairs = get_response()
+        if decision_pairs and '```' not in decision_pairs:
+            print("Response not retreived in correct format. Trying again...")
     print("Student Decision Pairs Extracted")
 
-    decision_pairs = json.loads(decision_pairs.split("```")[1])
+    decision_pairs = ast.literal_eval(decision_pairs.split("```")[1])
     application.decision_data = decision_pairs
+    application.save()
 
 
 
-def get_student_qualifications_decisions(uni_name, course, country, student_id):
-    application = create_student_application(student_id, uni_name, course, country)
-    get_processed_student_data(application)
-    add_student_qualifications_decisions(application)
+def get_student_qualifications_decisions(
+        student_id,
+        university_name, 
+        course, 
+        country, 
+        re_eval=False
+    ):
+    application = create_student_application(
+        student_id, 
+        university_name, 
+        course, 
+        country
+    )
+    get_processed_student_data(application, re_eval)
+    add_student_qualifications_decisions(application, re_eval)
     
 
 

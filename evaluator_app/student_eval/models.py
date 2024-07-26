@@ -70,13 +70,13 @@ class Application(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     course = models.ForeignKey(UniversityCourse, on_delete=models.CASCADE)
     country = models.ForeignKey(UniversityCountry, on_delete=models.CASCADE)
-    student_qualifications = models.TextField(default=None)
-    university_requirements = models.TextField(default=None)
-    processed_qualifications = models.TextField(default=None)
-    decision_data = models.TextField(default=None)
+    student_qualifications = models.TextField()
+    university_requirements = models.TextField()
+    processed_qualifications = models.TextField()
+    decision_data = models.TextField()
     status = models.CharField(max_length=200, default='pending')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.student} | {self.course} | {self.country} | {self.status}"
+        return f"{self.student} | {self.university} | {self.course.name} | {self.country.name} | {self.status}"
