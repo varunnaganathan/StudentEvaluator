@@ -1,92 +1,138 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
+from student_eval.search_utils import (
+    get_application_decision_table, 
+    get_application_students_from_query,
+    get_document_path
+)
+from student_eval.models import (
+    Application
+)
 
-def index(request):
-    context = {
-        'title': 'Student Evaluation',
-        'description': 'This is a simple student evaluation system.',
-        'author': 'Django Team',
-        'year' : 2021,
-        'authenticated': False,
-    }
+from django.shortcuts import get_object_or_404, redirect, render
+
+
+def landing_page(request):
+    context = {}
     html_template = loader.get_template('index.html')
     return HttpResponse(html_template.render(context, request))
 
 
-from django.shortcuts import render
-
-def student_info(request):
+def student_info(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
     context = {
-        "name": 'John Doe',
-        'country': 'Nigeria',
-        'age': 25,
-        'course': 'Computer Science',
-        'level': 300,
-        'nationality': 'Nigerian',
-        'email': 'john.doe@example.com',
-        'phone': '+234-123-456-7890',
-        'address': '123, Main Street, Lagos, Nigeria',
+        'application': application,
     }
     html_template = loader.get_template('components/student_info.html')
     return HttpResponse(html_template.render(context, request))
 
 
-def academic(request):
-    context = {
-        "table": {
-            "header": ["Requirement", "Qualification", "Review"],
-            "data": 
-            [
-                ["GPA Score above 3.5", "3.8", "Pass"],
-                ["Minimum 120 Credit Hours", "95", "Review Needed"],
-                ["Coursework Completed", "Yes", "Pass"],
-                ["Thesis Completed", "Not completed", "Fail"],
-            ]
-        },
-        "documents": [
-            {
-                "title": "Transcript",
-                "status": "Available"
-            },
-            {
-                "title": "Course Registration",
-                "status": "Available"
-            },
-            {
-                "title": "Course Results",
-                "status": "Available"
-            },
-            {
-                "title": "Course Materials",
-                "status": "Not Available"
-            },
-        ]
-    }
-
+def academic(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    context = get_application_decision_table(application, 'academic')
     html_template = loader.get_template('components/academic.html')
     return HttpResponse(html_template.render(context, request))
 
 
-
-def english(request):
-    context = {}
+def english(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    context = get_application_decision_table(application, 'english')
     html_template = loader.get_template('components/english.html')
     return HttpResponse(html_template.render(context, request))
     
 
-def visa(request):
-    context = {}
+def work_experience(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    context = get_application_decision_table(application, 'work')
+    html_template = loader.get_template('components/work_experience.html')
+    return HttpResponse(html_template.render(context, request))
+
+
+def approve_or_decline(request, application_id):
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        page_name = request.POST.get('page_name')
+
+        application = get_object_or_404(Application, id=application_id)
+
+        context = get_application_decision_table(application, page_name)
+        data = context['decision_data']
+        if action == 'approve':
+            if page_name == 'academic':
+                application.academic_data = data
+            elif page_name == 'english':
+                application.english_data = data
+            elif page_name == 'work':
+                application.work_experience_data = data
+            else:
+                return JsonResponse({'error': 'Invalid request'}, status=400)
+
+        elif action == 'decline':
+            if page_name == 'academic':
+                application.academic_data = data
+            elif page_name == 'english':
+                application.english_data = data
+            elif page_name == 'work':
+                application.work_experience_data = data
+            else:
+                return JsonResponse({'error': 'Invalid request'}, status=400)
+
+        else:
+            return JsonResponse({'error': 'Invalid request'}, status=400)
+
+        application.save()
+
+        return redirect('student_info', application_id=application_id)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+
+def visa(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    context = {
+        'application': application,
+        'table': get_application_decision_table(application, 'work')
+    }
+    
     html_template = loader.get_template('components/visa.html')
     return HttpResponse(html_template.render(context, request))
 
-def exceptions(request):
+
+
+def exceptions(request, application_id):
     context = {}
     html_template = loader.get_template('components/exceptions.html')
     return HttpResponse(html_template.render(context, request))
 
 
-def app_notes(request):
+def app_notes(request, application_id):
     context = {}
     html_template = loader.get_template('components/app_notes.html')
     return HttpResponse(html_template.render(context, request))
+
+
+def student_search(request):
+    query = request.GET.get('query', '')
+    if len(query) >= 3:
+        results = get_application_students_from_query(query)
+    else:
+        results = []
+    return JsonResponse(results, safe=False)
+
+
+def search_result(request):
+    if request.method == 'POST':
+        student_str = request.POST.get('query', '')
+        print(student_str)
+        if student_str and ' | ' in student_str and student_str.split(' | ')[1].strip().isdigit():
+            student_id = int(student_str.split(' | ')[1].strip())
+            application = Application.objects.filter(student__student_id=student_id).first()
+            context = {
+                'application': application,
+            }
+            return render(request, 'student_application.html', context)        
+    
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+

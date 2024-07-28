@@ -1,6 +1,18 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 
+{% block stylesheets %}
+<link type="text/css" href="{% static 'css/search-bar.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
+
+
 {% block content %}
-    {% include "components/main.html" %}
+    <section class="search_area">
+        <div class="container">
+            <div class="logo">
+                <h1>AI-Powered Student <br/> Application Evalutor</h1>
+            </div>
+            {% include 'components/search-student.html' %}
+        </div>
+    </section>
 {% endblock %}

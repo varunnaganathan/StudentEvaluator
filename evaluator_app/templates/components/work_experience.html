@@ -55,7 +55,7 @@
 </style>
 
 <div class="application-review-container">
-    <h1>Academic Qualifications Review</h1>
+    <h1>Work Experience Review</h1>
     <div class="field">
         <label>Requirement</label>
         <p>{{ requirement }}</p>
@@ -94,13 +94,9 @@
         <a href="{{ document_path }}" class="btn btn-brand ms-lg-3" target="_blank">Open {{file_name}}</a>
     </div>
     {% if approve_or_decline %}
-    <form method="POST" action="{% url 'approve_or_decline' application.id %}">
         <div class="button-container">
-            <button type="submit" name="action" value="approve" class="btn btn-brand ms-lg-3">Approve</button>
-            <button type="submit" name="action" value="decline" class="btn btn-brand ms-lg-3">Decline</button>
-            <input type="hidden" name="page_name" value="academic">
+            <button type="button" class="btn btn-brand ms-lg-3">Approve</button>
+            <button type="button" class="btn btn-brand ms-lg-3">Decline</button>
         </div>
-    </form>
-        
     {% endif %}
 </div>

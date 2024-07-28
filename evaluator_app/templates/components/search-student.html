@@ -1,0 +1,49 @@
+<h3 id="student-name">Search for Student Application</h3>
+<div class="search-container">
+    <form id="search-form" method="post" action="{% url 'search-result' %}">
+        {% csrf_token %}
+        <input type="text" id="search-bar" name='query' placeholder="Search student..." autocomplete="off">
+        <button id="clear-btn" style="display:none;"><i class="fas fa-trash-alt"></i></button>
+        <button id="submit-btn">Search</button>
+    </form>
+</div>
+<div id="search-results" class="dropdown-content"></div>
+
+<script>
+    $(document).ready(function(){
+        $('#search-bar').on('input', function(){
+            let query = $(this).val();
+            if (query.length >= 3) {
+                $.ajax({
+                    url: '{% url "student-search" %}',
+                    data: {'query': query},
+                    success: function(data) {
+                        let results = $('#search-results');
+                        results.empty();
+                        if (data.length > 0) {
+                            $.each(data, function(index, student) {
+                                results.append('<div class="dropdown-item" data-name="' + student.first_name + ' ' + student.last_name + ' | ' + student.student_id + '">' + student.first_name + ' ' + student.last_name + ' (' + student.email + ', ' + student.student_id + ')</div>');
+                            });
+                            results.show();
+                        } else {
+                            results.hide();
+                        }
+                    }
+                });
+            } else {
+                $('#search-results').hide();
+            }
+        });
+
+        $(document).on('click', '.dropdown-item', function(){
+            $('#search-bar').val($(this).data('name'));
+            $('#search-results').hide();
+            $('#clear-btn').show();
+        });
+
+        $('#clear-btn').on('click', function(){
+            $('#search-bar').val('');
+            $('#clear-btn').hide();
+        });
+    });
+</script>

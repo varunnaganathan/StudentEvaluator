@@ -1,0 +1,102 @@
+
+<style>
+    .application-review-container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+    .application-review-container h1 {
+        text-align: center;
+        color: #333;
+    }
+    .field {
+        margin-bottom: 15px;
+    }
+    .field label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .field p {
+        margin: 0;
+        color: #555;
+    }
+    .document-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 15px 0;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .document-button:hover {
+        background-color: #218838;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .document-field {
+        display: inline-block;
+        align-items: center;
+    }
+
+</style>
+
+<div class="application-review-container">
+    <h1>English Qualifications Review</h1>
+    <div class="field">
+        <label>Requirement</label>
+        <p>{{ requirement }}</p>
+    </div>
+    <div class="field">
+        <label>Qualification</label>
+        <p>{{ qualification }}</p>
+    </div>
+    <div class="field">
+        <label>Qualification Result</label>
+        <p>{{ qualification_result }}</p>
+    </div>
+    <div class="field">
+        <label>Supporting Text</label>
+        <p>{{ supporting_text }}</p>
+    </div>
+    <div class="field">
+        <label>Reasoning</label>
+        <p>{{ reasoning }}</p>
+    </div>
+    <div class="field">
+        <label>Decision</label>
+        <p>
+            {% if decision == "pass" %}
+                <i class="fas fa-check-circle accepted decision-icon"></i>
+            {% elif decision == "fail" %}
+                <i class="fas fa-times-circle rejected decision-icon"></i>
+            {% elif decision == "review required" %}
+                <i class="fas fa-exclamation-circle review-required decision-icon"></i>
+            {% else %}
+                {{ decision }}
+            {% endif %}
+        </p>
+    </div>
+    <div class="document-field">
+        <a href="{{ document_path }}" class="btn btn-brand ms-lg-3" target="_blank">Open {{file_name}}</a>
+    </div>
+    {% if approve_or_decline %}
+        <div class="button-container">
+            <button type="button" class="btn btn-brand ms-lg-3">Approve</button>
+            <button type="button" class="btn btn-brand ms-lg-3">Decline</button>
+        </div>
+    {% endif %}
+</div>

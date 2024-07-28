@@ -398,6 +398,8 @@ def add_student_qualifications_decisions(application: Application, re_eval=False
         return student_decision_pairs
     
 
+    get_processed_student_data(application, re_eval)
+    
     if application.decision_data and not re_eval:
         print("Student decision pairs already extracted. Skipping...")
         return
@@ -428,7 +430,6 @@ def get_student_qualifications_decisions(
         course, 
         country
     )
-    get_processed_student_data(application, re_eval)
     add_student_qualifications_decisions(application, re_eval)
     
 

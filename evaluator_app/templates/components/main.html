@@ -1,8 +1,11 @@
+{% load custom_templates %}
+
 <section class="evaluate">
     <div class="container">
         <div class="header">
-            <p>Student ID: <span id="student-id">123456</span></p>
-            <p>University: <span id="university">McMaster University</span> | Course: <span id="course">Computer Science</span></p>
+            <p>Student ID: <span id="student-id">{{application.student.student_id}}</span></p>
+            <p>University: <span id="university">{{application.university.name | title_case}}</span></p> 
+            <p>Course: <span id="course">{{application.course.name}}</span></p>
         </div>
         <div class="main">
             <div class="sidebar">
@@ -10,6 +13,7 @@
                     <li class="tab">Student Info</li>
                     <li class="tab">Academic</li>
                     <li class="tab">English</li>
+                    <li class="tab">Work Experience</li>
                     <li class="tab">Visa</li>
                     <li class="tab">Exceptions</li>
                     <li class="tab">App Notes</li>
@@ -26,14 +30,14 @@
 <script>
     $(document).ready(function() {
         // Load default content
-        $("#content").load("{% url 'student_info' %}");
+        $("#content").load("{% url 'student_info' application.id %}");
 
         $(".tab").click(function() {
             $(".tab").removeClass("active");
             $(this).addClass("active");
 
             var tabName = $(this).text().trim().toLowerCase().replace(' ', '_');
-            var url = "{% url 'student_info' %}".replace('student_info', tabName);
+            var url = "{% url 'student_info' application.id %}".replace('student_info', tabName);
 
             $("#content").load(url);
         });
