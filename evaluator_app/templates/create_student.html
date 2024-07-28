@@ -1,0 +1,101 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+
+{% block content %}
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#id_university').change(function() {
+            var url = "{% url 'load_courses_and_countries' %}";
+            var universityId = $(this).val();
+
+            $.ajax({
+                url: url,
+                data: {
+                    'university': universityId
+                },
+                success: function(data) {
+                    $("#id_course").html('');
+                    $("#id_country").html('');
+
+                    $.each(data.courses, function(key, value) {
+                        $("#id_course").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+
+                    $.each(data.countries, function(key, value) {
+                        $("#id_country").append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<div class="container-fluid">
+    <div class="row gy-4">
+        <div class="col-lg-8">
+            <h2>Add a Student Application</h2>
+            <form class="p-lg-5 col-12 row g-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-lg-4">
+                    <label for="studentID" class="form-label">Student ID</label>
+                    <input type="text" class="form-control" id="studentID" name="student_id" placeholder="Student ID" value="{{ form.student_id.value|default_if_none:'' }}">
+                </div>
+                <div class="col-lg-4">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="first_name" placeholder="First Name" value="{{ form.first_name.value|default_if_none:'' }}">
+                </div>
+                <div class="col-lg-4">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Last Name" value="{{ form.last_name.value|default_if_none:'' }}">
+                </div>
+                <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ form.email.value|default_if_none:'' }}">
+                </div>
+                <div class="form-group full-width">
+                    <label for="documents" class="form-label">Documents</label>
+                    <input type="file" class="form-control" id="documents" name="documents" multiple>
+                </div>
+                <div class="form-group full-width">
+                    <label for="university" class="form-label">University</label>
+                    <select class="form-control" id="id_university" name="university">
+                        <option value="" selected disabled>Select a university</option>
+                        {% for university in form.university.field.queryset %}
+                            <option value="{{ university.id }}" {% if university.id == form.university.value %}selected{% endif %}>{{ university.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-lg-6">
+                    <label for="course" class="form-label">Course</label>
+                    <select class="form-control" id="id_course" name="course">
+                        <option value="" selected disabled>Select a course</option>
+                        {% for course in form.course.field.queryset %}
+                            <option value="{{ course.id }}" {% if course.id == form.course.value %}selected{% endif %}>{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-lg-6">
+                    <label for="country" class="form-label">Country</label>
+                    <select class="form-control" id="id_country" name="country">
+                        <option value="" selected disabled>Select a country</option>
+                        {% for country in form.country.field.queryset %}
+                            <option value="{{ country.id }}" {% if country.id == form.country.value %}selected{% endif %}>{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-brand">Add Student</button>
+                </div>
+            </form>        
+        </div>
+    </div>
+</div>
+
+{% endblock %}

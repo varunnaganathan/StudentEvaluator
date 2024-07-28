@@ -14,4 +14,7 @@ urlpatterns = [
     path('visa/<int:application_id>/', views.visa, name='visa'),
     path('exceptions/<int:application_id>/', views.exceptions, name='exceptions'),
     path('app_notes/<int:application_id>/', views.app_notes, name='app_notes'),
+    path('create-student/', views.create_student, name='create_student'),
+    path('ajax/load-courses-and-countries/', views.load_courses_and_countries, name='load_courses_and_countries'),
+
 ]

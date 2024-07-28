@@ -1,13 +1,16 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
+from student_eval.forms import StudentForm
 from student_eval.search_utils import (
     get_application_decision_table, 
     get_application_students_from_query,
     get_document_path
 )
 from student_eval.models import (
-    Application
+    Application,
+    UniversityCountry,
+    UniversityCourse
 )
 
 from django.shortcuts import get_object_or_404, redirect, render
@@ -136,3 +139,26 @@ def search_result(request):
     
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+
+
+def create_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Process the form data
+            # save student data and handle file uploads as needed
+            return redirect('success')
+    else:
+        form = StudentForm()
+    
+    return render(request, 'create_student.html', {'form': form})
+
+
+def load_courses_and_countries(request):
+    university_id = request.GET.get('university')
+    courses = UniversityCourse.objects.filter(university_id=university_id).order_by('name')
+    countries = UniversityCountry.objects.filter(university_id=university_id).order_by('name')
+    return JsonResponse({
+        'courses': list(courses.values('id', 'name')), 
+        'countries': list(countries.values('id', 'name'))
+    })
