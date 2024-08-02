@@ -71,6 +71,8 @@ def get_document_path(doc_id):
         str(student_id), 
         file_name.split('.txt')[0] + '.pdf'
     )
+    pth = settings.MEDIA_URL + str(student_id) + '/' + file_name.split('.txt')[0] + '.pdf'
+    
 
     print("Document path: ", pth)
     
